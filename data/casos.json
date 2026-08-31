@@ -1,0 +1,4 @@
+{
+  "_comentario": "Casos clinicos do simulador. Cada caso: id, titulo, hipotese de referencia, e fases (fluxo da entrevista). Opcoes tem texto, feedback, reacao do paciente e deltas por categoria do checklist (nome da categoria em rubrica.json).",
+  "casos": []
+}

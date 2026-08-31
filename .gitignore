@@ -1,0 +1,19 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Ambiente / editores
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Node (caso algum dia use)
+node_modules/
+
+# Conteúdo de referência local (pasta inteira fora do GitHub)
+rubrica/
+
+# Cache do conversor
+*.tmp

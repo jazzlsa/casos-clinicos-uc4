@@ -1,0 +1,4 @@
+{
+  "_comentario": "Checklist de avaliacao da anamnese (UC4). Gerado pelo tools/parse_rubrica.py a partir do conteudo de referencia em rubrica/. Estrutura: cada categoria tem 'nome' e 'pontos_max'; o app soma por categoria e mostra nota/max.",
+  "categorias": []
+}
