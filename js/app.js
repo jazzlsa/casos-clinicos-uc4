@@ -35,7 +35,13 @@ btnTema.addEventListener("click", () => {
 let dados = { CASOS: [], RUBRICA: [] };
 let estado = null; // { caso, indiceFase, coberto:Set, evitou:Array, porFase:Array }
 
-function el(html) { const t = document.createElement("template"); t.innerHTML = html.trim(); return t.content.firstChild; }
+function el(html) {
+  // retorna um fragmento com TODOS os elementos-raiz do template (não só o
+  // primeiro) — a tela inicial monta vários irmãos (título + chamada + lista).
+  const t = document.createElement("template");
+  t.innerHTML = html.trim();
+  return t.content.cloneNode(true);
+}
 function esc(s) { const d = document.createElement("div"); d.textContent = s == null ? "" : String(s); return d.innerHTML; }
 
 function categoria(nome) { return dados.RUBRICA.find(c => c.nome.toLowerCase() === nome.toLowerCase()); }
