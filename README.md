@@ -37,6 +37,14 @@ python -m http.server 8000
 ```
 Abra <http://localhost:8000>.
 
+## Casos disponíveis
+
+- **Dor abdominal** — Sra. Cláudia, 38 anos (DIP; diabetes "escondido").
+- **Dispneia** — Sr. Antônio, 45 anos (asma ocupacional do padeiro; exposição à farinha).
+
+Cada caso trabalha uma das categorias do checklist (`Dispneia`, `Edema`, …) além da
+Relação Estudante-Paciente e da Anamnese Geral.
+
 ## Adicionar conteúdo
 
 1. Coloque o arquivo de referência em `rubrica/` (pasta local, não versionada).
