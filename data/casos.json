@@ -640,6 +640,328 @@
           ]
         }
       ]
+    },
+    {
+      "id": "edema-01",
+      "titulo": "Dona Maria, 62 anos — inchaço nas pernas há 2 semanas",
+      "chamada": "Inchaço de membros inferiores. Ela acha que é 'da idade' — a chave está na medicação que usa e no coração.",
+      "hipotese": "Exacerbação de insuficiência cardíaca (ICC): mulher idosa hipertensa com edema de MMII, ortopneia e ganho de peso recente — revisar o uso de anlodipina, que agrava o edema. (referência de estudo)",
+      "categorias": [
+        "Relação Estudante-Paciente",
+        "Anamnese Geral",
+        "Edema"
+      ],
+      "dicas": [
+        "Sempre se apresentar antes de qualquer pergunta clínica — é item do checklist.",
+        "Pergunte ATIVAMENTE sobre as medicações contínuas e quando o inchaço começou em relação a elas. Aqui a ANLODIPINA (remédio pra pressão que causa edema) é a chave — só aparece se você perguntar. É o 'diabetes escondido' deste caso.",
+        "Investigue sintomas de insuficiência cardíaca (falta de ar, ortopneia, acordar à noite sem ar) e o número de travesseiros — diferenciam edema por ICC de outras causas.",
+        "Descarte as outras causas no quadro: renal (urina espumosa, inchaço palpebral), hepática (barriga, amarelado), tireoidiana (cansaço, frio) e venosa (varizes, dor nas pernas).",
+        "Observe os sinais de ansiedade encenados e acolha com empatia naquele momento.",
+        "Sem jargão técnico nas perguntas — guarde os termos médicos (ICC, ortopneia, anasarca) só para o resumo final + hipótese."
+      ],
+      "fases": [
+        {
+          "tag": "Apresentação & Rapport",
+          "paciente": "A porta se abre. Uma senhora de cerca de 60 anos entra caminhando devagar, com dificuldade, e ao sentar-se passa a mão nas pernas, parecendo incomodada.",
+          "instrucao": "O que você faz nesta primeira etapa? Marque todas as ações que tomaria.",
+          "opcoes": [
+            {
+              "texto": "Me apresento e pergunto como quer ser chamada: 'Olá, meu nome é ___, sou estudante de medicina. Como a senhora prefere ser chamada?'",
+              "rotulo": "bom",
+              "feedback": "Apresentar-se é item obrigatório e fundamental da Relação Estudante-Paciente.",
+              "reacao": "Ela sorri, um pouco apreensiva: 'Pode me chamar de Dona Maria.'",
+              "cobre": [
+                "rep01",
+                "rep02",
+                "rep03"
+              ]
+            },
+            {
+              "texto": "Percebo que ela está incomodada e acolho: 'Vejo que a senhora está com dificuldade para andar. Quer se acomodar com calma? Estou aqui para ajudar.'",
+              "rotulo": "bom",
+              "feedback": "Acolher o desconforto/ansiedade com empatia é exatamente o que a prova avalia.",
+              "reacao": "Ela alivia os ombros: 'Obrigada... é que essas pernas estão inchadas, dói pra andar.'",
+              "cobre": [
+                "rep02",
+                "anam11"
+              ]
+            },
+            {
+              "texto": "Explico que será uma entrevista e peço permissão: 'Vou fazer algumas perguntas para entender o que está acontecendo. Posso conduzir a entrevista?'",
+              "rotulo": "bom",
+              "feedback": "Explicar que será conduzida uma entrevista é item do checklist.",
+              "reacao": "'Pode sim, obrigada.'",
+              "cobre": [
+                "rep04"
+              ]
+            },
+            {
+              "texto": "Vou direto ao assunto, sem me apresentar: 'Me conta o que a senhora está sentindo.'",
+              "rotulo": "ruim",
+              "feedback": "A prova exige que você SEMPRE se apresente antes de iniciar a anamnese. Não pule.",
+              "reacao": "Ela arqueia a sobrancelha, um pouco surpresa."
+            }
+          ]
+        },
+        {
+          "tag": "Identificação & Queixa principal",
+          "paciente": "Dona Maria diz: 'Doutor, minhas pernas tão inchando há uns quinze dias. Achei que era cansaço, mas não tá passando.'",
+          "instrucao": "Como você conduz a identificação e o início da coleta? Marque as que faria.",
+          "opcoes": [
+            {
+              "texto": "Pergunto a idade e completo a identificação: 'Posso anotar sua idade e seu nome? De onde a senhora é, qual era sua profissão? Posso saber sua religião?'",
+              "rotulo": "bom",
+              "feedback": "Identificação completa (nome, idade, naturalidade, profissão, religião...) é parte da anamnese geral.",
+              "reacao": "'Tenho 62 anos. Era cozinheira, hoje sou aposentada, moro aqui na cidade.'",
+              "cobre": [
+                "anam01"
+              ]
+            },
+            {
+              "texto": "Pergunto a queixa principal e a duração: 'Me conta melhor esse inchaço: desde quando começou, e o que a senhora sente?'",
+              "rotulo": "bom",
+              "feedback": "Queixa principal + duração é item do checklist.",
+              "reacao": "'Faz uns quinze dias. As pernas ficam pesadas e inchadas, pior à noite.'",
+              "cobre": [
+                "anam04"
+              ]
+            },
+            {
+              "texto": "Identifico o informante e a confiabilidade: 'É a senhora mesma quem me conta, certo? A senhora se sente bem para conversar?'",
+              "rotulo": "bom",
+              "feedback": "Identificar o informante principal e o grau de confiabilidade é item do checklist.",
+              "reacao": "'Sou eu mesma, tô conseguindo conversar.'",
+              "cobre": [
+                "anam03"
+              ]
+            },
+            {
+              "texto": "Pergunto apenas o nome e já pulo para o inchaço, sem o resto da identificação.",
+              "rotulo": "medio",
+              "feedback": "Identificação incompleta deixa itens do checklist de fora (religião, cor/raça/etnia, orientação sexual...).",
+              "reacao": "Ela fornece só o nome."
+            }
+          ]
+        },
+        {
+          "tag": "Edema — anamnese dirigida",
+          "paciente": "Dona Maria aponta as pernas: 'Incharam as duas, de baixo pra cima. De manhã tá melhor, mas no fim do dia tá bem pior.'",
+          "instrucao": "Ela descreve pouco. Marque as perguntas que faria para caracterizar o edema.",
+          "opcoes": [
+            {
+              "texto": "Investigo o tempo de instalação e a duração: 'Esse inchaço começou de repente ou foi aos poucos? Há quanto tempo exatamente?'",
+              "rotulo": "bom",
+              "feedback": "Investigar tempo de instalação (agudo/crônico) e duração é item do quadro de edema.",
+              "reacao": "'Foi aos poucos, faz uns quinze dias. Antes não tinha isso.'",
+              "cobre": [
+                "ede01"
+              ]
+            },
+            {
+              "texto": "Investigo a evolução ao longo do dia: 'O inchaço é igual o dia inteiro, ou muda? Piora de manhã ou à noite?'",
+              "rotulo": "bom",
+              "feedback": "A evolução ao longo do dia é item do quadro de edema.",
+              "reacao": "'Piora muito no fim do dia. De manhã tá mais aliviado, e melhora quando descanso com as pernas pra cima.'",
+              "cobre": [
+                "ede02"
+              ]
+            },
+            {
+              "texto": "Delimito a localização: 'A senhora pode me mostrar onde exatamente incha? É nas duas pernas iguais? E sobe até onde?'",
+              "rotulo": "bom",
+              "feedback": "Delimitar a localização é item do checklist — ajuda a diferenciar causa cardíaca de venosa.",
+              "reacao": "Ela aponta dos tornozelos até a canela, dos dois pés: 'As duas pernas, até aqui.'",
+              "cobre": [
+                "ede03"
+              ]
+            },
+            {
+              "texto": "Pergunto sobre ganho de peso: 'A senhora notou se engordou ou se o peso subiu nas últimas semanas?'",
+              "rotulo": "bom",
+              "feedback": "Perguntar ativamente sobre ganho de peso recente é item do quadro de edema.",
+              "reacao": "'Agora que a senhora pergunta... engordei uns 3 quilos esse mês, e a aliança ficou apertada.'",
+              "cobre": [
+                "ede04"
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "Medicações, coração & causas do edema",
+          "paciente": "Ao ser perguntada sobre a rotina, Dona Maria menciona, meio de passagem: 'Eu tomo remédio pra pressão há anos...' e não completa.",
+          "instrucao": "Aqui está a chave do caso. Marque as perguntas que faria para fechar o diagnóstico e descartar as causas.",
+          "opcoes": [
+            {
+              "texto": "Reviso as medicações contínuas em detalhe: 'Quais remédios a senhora toma no dia a dia? Algum foi trocado ou começou recentemente? Quando o inchaço começou em relação a isso?'",
+              "rotulo": "bom",
+              "feedback": "← PONTO-CHAVE. Revisar medicamentos contínuos que causam edema (ex.: anlodipina) e a correlação com o início é item do checklist. A ANLODIPINA só aparece se você perguntar — e é ela que agrava o inchaço.",
+              "reacao": "'Tomo remédio da pressão. Faz uns 3 meses que o médico trocou pra um tal de anlodipina... e o inchaço começou mais ou menos depois disso.'",
+              "cobre": [
+                "ede09"
+              ]
+            },
+            {
+              "texto": "Pesquiso sintomas de insuficiência cardíaca: 'A senhora tem sentido falta de ar? Acordou à noite com dificuldade para respirar ou com sensação de sufocamento?'",
+              "rotulo": "bom",
+              "feedback": "Sintomas de insuficiência cardíaca (dispneia, ortopneia, dispneia paroxística noturna) são itens do quadro de edema.",
+              "reacao": "'Falta de ar sim, e de uns dias pra cá eu acordo de madrugada meio sufocada, preciso sentar na cama.'",
+              "cobre": [
+                "ede05"
+              ]
+            },
+            {
+              "texto": "Pergunto sobre travesseiros e posição ao deitar: 'A senhora dorme com quantos travesseiros? Precisou elevar a cabeceira ou dormir quase sentada?'",
+              "rotulo": "bom",
+              "feedback": "Perguntar o número de travesseiros / elevação da cabeceira é item do checklist para insuficiência cardíaca.",
+              "reacao": "'Agora durmo com três travesseiros, senão sinto que sufoco.'",
+              "cobre": [
+                "ede06"
+              ]
+            },
+            {
+              "texto": "Pesquiso indícios de doença renal: 'A urina está com espuma? Seu rosto ou pálpebras incham de manhã?'",
+              "rotulo": "bom",
+              "feedback": "Investigar doença renal (urina espumosa, inchaço palpebral) ou causa inflamatória/alérgica é item do quadro.",
+              "reacao": "'Um pouco de espuma na urina, mas não reparei muito. Rosto não incha.'",
+              "cobre": [
+                "ede08"
+              ]
+            },
+            {
+              "texto": "Pesquiso sinais de doença hepática: 'Sua barriga aumentou de volume? A pele ou os olhos ficaram amarelados? Teve confusão ou sangramentos?'",
+              "rotulo": "bom",
+              "feedback": "Pesquisar sintomas de doença hepática (volume abdominal, icterícia, confusão, tremores, eritema palmar) é item do checklist.",
+              "reacao": "'A barriga tá meio grande, mas eu achei que era de idade. Amarelada eu não tô.'",
+              "cobre": [
+                "ede07"
+              ]
+            },
+            {
+              "texto": "Investigo sintomas de hipotireoidismo: 'A senhora tem se sentido muito cansada, com sono? Pele seca, prisão de ventre, sensibilidade ao frio?'",
+              "rotulo": "bom",
+              "feedback": "Investigar sintomas de hipotireoidismo é item do quadro de edema.",
+              "reacao": "'Cansada eu tô, mas acho que é da idade mesmo.'",
+              "cobre": [
+                "ede12"
+              ]
+            },
+            {
+              "texto": "Investigo insuficiência venosa periférica: 'A senhora tem varizes? Dor ou sensação de peso nas pernas? A pele está escura ou endurecida perto do tornozelo?'",
+              "rotulo": "bom",
+              "feedback": "Perguntar sobre sinais de insuficiência venosa periférica é item do checklist.",
+              "reacao": "'Tenho umas varizes antigas, mas a dor agora é por causa do inchaço.'",
+              "cobre": [
+                "ede11"
+              ]
+            },
+            {
+              "texto": "Pergunto sobre trauma ou cirurgia: 'A senhora bateu a perna ou fez alguma cirurgia recente?'",
+              "rotulo": "bom",
+              "feedback": "Perguntar sobre trauma local ou cirurgias prévias é item do quadro.",
+              "reacao": "'Não, nada disso.'",
+              "cobre": [
+                "ede10"
+              ]
+            },
+            {
+              "texto": "Não pergunto sobre as medicações nem sobre o coração — sigo direto para encerrar a anamnese.",
+              "rotulo": "ruim",
+              "feedback": "← É exatamente aqui que a prova te derruba: sem perguntar sobre os remédios você NÃO descobre a anlodipina nem a correlação com o início, e o avaliador registra 'não realizado'. A chave do caso só aparece com a pergunta ativa.",
+              "reacao": "Dona Maria não menciona a anlodipina nem a piora do inchaço depois dela."
+            }
+          ]
+        },
+        {
+          "tag": "Comorbidades, ISDA, hábitos, impacto e comunicação não verbal",
+          "paciente": "Dona Maria respira um pouco mais fundo ao falar e aperta as mãos no colo quando o assunto é o sono.",
+          "instrucao": "Marque as ações que faria para fechar a anamnese geral e acolher o desconforto.",
+          "opcoes": [
+            {
+              "texto": "Pergunto antecedentes pessoais e medicamentos: 'A senhora tem alguma doença além da pressão, como diabetes, coração ou rim? Toma outros remédios além do da pressão?'",
+              "rotulo": "bom",
+              "feedback": "Antecedentes pessoais e uso de medicamentos são itens da anamnese geral.",
+              "reacao": "'Só pressão alta, há uns 10 anos. Tomo só o remédio da pressão.'",
+              "cobre": [
+                "anam06"
+              ]
+            },
+            {
+              "texto": "Percorro o ISDA sem jargão: 'Além do inchaço e da falta de ar, te incomoda alguma outra coisa — cabeça, barriga, urina, febre?'",
+              "rotulo": "bom",
+              "feedback": "Fazer o ISDA (interrogatório por aparelhos) é item da anamnese geral.",
+              "reacao": "'Não, mais nada que eu note.'",
+              "cobre": [
+                "anam07"
+              ]
+            },
+            {
+              "texto": "Pergunto hábitos e estilo de vida: 'A senhora fuma, bebe? Como é seu sono e sua alimentação, usa muito sal?'",
+              "rotulo": "bom",
+              "feedback": "Hábitos e estilo de vida é item da anamnese geral.",
+              "reacao": "'Não fumo, bebo raramente. Sono tá ruim por causa da falta de ar. Como sal, confesso.'",
+              "cobre": [
+                "anam08"
+              ]
+            },
+            {
+              "texto": "Pergunto antecedentes familiares: 'Alguém na sua família tem problema de coração, pressão, diabetes ou rim?'",
+              "rotulo": "bom",
+              "feedback": "Antecedentes familiares é item do checklist.",
+              "reacao": "'Minha mãe teve pressão alta e morreu de 'doença do coração'. Meu irmão tem diabetes.'",
+              "cobre": [
+                "anam09"
+              ]
+            },
+            {
+              "texto": "Pergunto o impacto da queixa na vida: 'Como esse inchaço e a falta de ar estão afetando seu dia a dia?'",
+              "rotulo": "bom",
+              "feedback": "Impacto da queixa na vida é item do checklist — valoriza o olhar biopsicossocial.",
+              "reacao": "'Tô com dificuldade pra subir escada e até pra calçar o sapato. Tá me preocupando.'",
+              "cobre": [
+                "anam10"
+              ]
+            },
+            {
+              "texto": "Noto que ela aperta as mãos e acolho: 'Vejo que a falta de ar e o inchaço estão preocupando a senhora. Está tudo bem? Pode falar com calma, estou aqui para ajudar.'",
+              "rotulo": "bom",
+              "feedback": "Reconhecer o desconforto/ansiedade encenado e acolher com empatia é item da Relação Estudante-Paciente.",
+              "reacao": "Ela solta o ar: 'Obrigada... é que me assusta não conseguir dormir direito. Obrigado por perguntar.'",
+              "cobre": [
+                "rep02",
+                "anam11"
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "Resumo & Hipótese",
+          "paciente": "Chega a hora de fechar. Dona Maria aguarda, um pouco mais tranquila após a conversa.",
+          "instrucao": "No final, VOCÊ faz o resumo do caso e apresenta a hipótese. Agora SIM pode usar termos técnicos.",
+          "opcoes": [
+            {
+              "texto": "Faço um resumo completo e apresento a hipótese: 'A senhora é uma mulher de 62 anos, hipertensa, em uso de anlodipina, com edema de membros inferiores de instalação insidiosa, ortopneia e dispneia paroxística noturna e ganho de peso recente. Meu diagnóstico principal é insuficiência cardíaca, e sugiro revisar a anlodipina, que contribui para o edema.'",
+              "rotulo": "bom",
+              "feedback": "O resumo final é onde o jargão técnico é apropriado e esperado — e a hipótese deve ser apresentada com clareza.",
+              "reacao": "Dona Maria acena, compreensiva.",
+              "cobre": [
+                "anam05"
+              ]
+            },
+            {
+              "texto": "Faço um resumo, mas omito a anlodipina e os sintomas de coração, e não apresento hipótese clara.",
+              "rotulo": "medio",
+              "feedback": "O resumo deve fechar o caso incluindo o que foi revelado, e a hipótese é o objetivo final da prova.",
+              "reacao": "O avaliador aguarda a hipótese."
+            },
+            {
+              "texto": "Durante a entrevista, uso jargão técnico com a paciente (ex.: 'a senhora tem ortopneia? anasarca? algum equivalente de congestão?').",
+              "rotulo": "ruim",
+              "feedback": "→ O avaliador registra: NÃO usar jargão técnico ao perguntar sobre sintomas. Só no resumo final. Isso é cobrado explicitamente.",
+              "reacao": "Dona Maria mostra expressão confusa, sem entender."
+            }
+          ]
+        }
+      ]
     }
   ]
 }

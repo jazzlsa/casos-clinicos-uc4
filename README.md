@@ -41,6 +41,7 @@ Abra <http://localhost:8000>.
 
 - **Dor abdominal** — Sra. Cláudia, 38 anos (DIP; diabetes "escondido").
 - **Dispneia** — Sr. Antônio, 45 anos (asma ocupacional do padeiro; exposição à farinha).
+- **Edema** — Dona Maria, 62 anos (ICC + anlodipina como chave escondida).
 
 Cada caso trabalha uma das categorias do checklist (`Dispneia`, `Edema`, …) além da
 Relação Estudante-Paciente e da Anamnese Geral.
