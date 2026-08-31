@@ -36,10 +36,13 @@ let dados = { CASOS: [], RUBRICA: [] };
 let estado = null; // { caso, indiceFase, coberto:Set, evitou:Array, porFase:Array }
 
 function el(html) {
-  // retorna um fragmento com TODOS os elementos-raiz do template (não só o
-  // primeiro) — a tela inicial monta vários irmãos (título + chamada + lista).
+  // Com um único elemento-raiz, devolve o próprio elemento (mantém chamadas
+  // como .querySelector/.addEventListener no retorno). Com vários irmãos
+  // (a tela inicial: título + chamada + lista), devolve um fragmento com todos.
   const t = document.createElement("template");
   t.innerHTML = html.trim();
+  const filhos = [...t.content.childNodes].filter(n => n.nodeType === Node.ELEMENT_NODE);
+  if (filhos.length === 1) return filhos[0];
   return t.content.cloneNode(true);
 }
 function esc(s) { const d = document.createElement("div"); d.textContent = s == null ? "" : String(s); return d.innerHTML; }
