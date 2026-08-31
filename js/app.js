@@ -2,8 +2,10 @@
 
 /* =========================================================================
    Simulador de anamnese — Casos Clínicos UC4
-   Lê data/casos.json (fluxo por caso) e data/rubrica.json (categorias do
-   checklist de avaliação), ambos caminhos relativos (GitHub Pages em subpath).
+   Lê data/casos.json (fluxo por caso) e data/rubrica.json (itens do
+   checklist de avaliação). O jogo marca quais itens o aluno perguntou/fêz e
+   mostra no fim, por categoria, o que ficou faltando.
+   Caminhos relativos (GitHub Pages em subpath).
    ========================================================================= */
 
 const appEl = document.getElementById("app");
@@ -29,16 +31,14 @@ btnTema.addEventListener("click", () => {
   aplicarTema(salvo);
 })();
 
-/* ---------------- Estado do jogo ---------------- */
+/* ---------------- Estado ---------------- */
 let dados = { CASOS: [], RUBRICA: [] };
-let estado = null; // { caso, indiceFase, pontos: {categoria: total}, escolhas: [] }
+let estado = null; // { caso, indiceFase, coberto:Set, evitou:Array, porFase:Array }
 
 function el(html) { const t = document.createElement("template"); t.innerHTML = html.trim(); return t.content.firstChild; }
 function esc(s) { const d = document.createElement("div"); d.textContent = s == null ? "" : String(s); return d.innerHTML; }
-function categoriaMax(nome) {
-  const c = dados.RUBRICA.find(r => r.nome.toLowerCase() === nome.toLowerCase());
-  return c ? (c.pontos_max || 0) : null;
-}
+
+function categoria(nome) { return dados.RUBRICA.find(c => c.nome.toLowerCase() === nome.toLowerCase()); }
 
 /* ---------------- Telas ---------------- */
 
@@ -48,11 +48,7 @@ function renderVazio() {
     <div class="painel vazio">
       <div class="icone">🩺</div>
       <h2>Ainda não há casos clínicos</h2>
-      <p>
-        O simulador está pronto, mas ainda não há casos disponíveis.
-        Quando o conteúdo de referência for adicionado ao projeto, o primeiro
-        caso aparece aqui para você treinar a entrevista.
-      </p>
+      <p>O simulador está pronto, mas ainda não há casos disponíveis.</p>
     </div>
   `));
 }
@@ -69,7 +65,8 @@ function renderHome() {
   appEl.appendChild(el(`
     <h2 class="titulo-pagina">Escolha um caso</h2>
     <p class="chamada">Você é o médico. Conduza a entrevista — apresente-se, acolha,
-      sem jargão, e feche com hipótese diagnóstica.</p>
+      sem jargão, e feche com hipótese diagnóstica. Marque as ações que você tomaria
+      em cada etapa.</p>
     <div class="lista-casos">${lista}</div>
   `));
   appEl.querySelectorAll(".cartao-caso").forEach(b => {
@@ -83,7 +80,7 @@ function renderHome() {
 /* ---------------- Motor de fases ---------------- */
 
 function iniciarCaso(caso) {
-  estado = { caso, indiceFase: 0, pontos: {}, escolhas: [] };
+  estado = { caso, indiceFase: 0, coberto: new Set(), evitou: [], porFase: [] };
   renderFase();
 }
 
@@ -98,96 +95,116 @@ function renderFase() {
     pontos += `<span class="fase-ponto ${cls}"></span>`;
   }
 
-  const opcoes = f.opcoes.map((o, i) =>
-    `<button class="opcao" data-i="${i}">${esc(o.texto)}</button>`
-  ).join("");
+  const opcoes = f.opcoes.map((o, i) => `
+    <label class="opcao opcao-multi" data-i="${i}">
+      <span class="check">⬜</span>
+      <span>${esc(o.texto)}</span>
+    </label>
+  `).join("");
 
   const painel = el(`
     <div class="painel">
       <div class="barra-fases">${pontos}</div>
       <div class="fase-tag">Fase ${atual + 1} · ${esc(f.tag)}</div>
       <h2 class="titulo-pagina">${esc(estado.caso.titulo)}</h2>
+      <p class="dica-fase">${esc(f.instrucao || "Marque todas as ações que você tomaria nesta etapa.")}</p>
       <div class="paciente">${esc(f.paciente)}</div>
       <div class="opcoes">${opcoes}</div>
+      <div id="feedback-holder"></div>
       <div class="acoes">
         <button class="btn secundario" id="btn-voltar">← Menu</button>
+        <button class="btn" id="btn-confirmar">Confirmar escolhas ✓</button>
       </div>
     </div>
   `);
 
-  painel.querySelectorAll(".opcao").forEach(op => {
-    op.addEventListener("click", () => escolher(op));
+  painel.querySelectorAll(".opcao-multi").forEach((lab, i) => {
+    lab.addEventListener("click", () => { lab.classList.toggle("selecionada"); });
   });
-  painel.querySelector("#btn-voltar").addEventListener("click", () => {
-    estado = null; renderHome();
-  });
+  painel.querySelector("#btn-voltar").addEventListener("click", () => { estado = null; renderHome(); });
+  painel.querySelector("#btn-confirmar").addEventListener("click", () => confirmarFase(painel));
 
   appEl.innerHTML = "";
   appEl.appendChild(painel);
 }
 
-function escolher(op) {
+function confirmarFase(painel) {
   const f = estado.caso.fases[estado.indiceFase];
-  const idx = Number(op.dataset.i);
-  const escolha = f.opcoes[idx];
+  const selecionadas = [...painel.querySelectorAll(".opcao-multi.selecionada")].map(lab => f.opcoes[Number(lab.dataset.i)]);
 
-  // desabilita re-seleção
-  const painel = appEl.querySelector(".painel");
-  painel.querySelectorAll(".opcao").forEach(o => { o.disabled = true; o.classList.remove("selecionada"); });
-  op.classList.add("selecionada");
+  // não deixa re-confirmar
+  painel.querySelectorAll(".opcao-multi").forEach(l => l.classList.add("bloqueada"));
+  const btn = painel.querySelector("#btn-confirmar");
+  btn.disabled = true; btn.textContent = "Fase confirmada";
 
-  // acumula pontos por categoria
-  for (const [cat, delta] of Object.entries(escolha.pontos || {})) {
-    estado.pontos[cat] = (estado.pontos[cat] || 0) + (delta || 0);
+  // acumula cobertura + evitações
+  const cobreIds = new Set();
+  const feitos = [];
+  const evitados = [];
+  for (const o of selecionadas) {
+    for (const id of (o.cobre || [])) cobreIds.add(id);
+    if (o.rotulo === "ruim") { evitados.push(o); estado.evitou.push({ fase: f, escolha: o }); }
+    if (o.rotulo && o.feedback) feitos.push(o);
   }
-  estado.escolhas.push({ fase: f, escolha });
+  cobreIds.forEach(id => estado.coberto.add(id));
+  estado.porFase.push({ fase: f, selecionadas });
 
-  const rotuloCls = escolha.rotulo || "medio";
-  const rotuloTexto = { bom: "Boa escolha ✅", medio: "Dá para melhorar ⚠️", ruim: "Evite isso ❌" }[rotuloCls] || "Dá para melhorar";
+  // feedback consolidado
+  let fb = "";
+  if (feitos.length) {
+    fb += `<div class="feedback">
+      <div class="rotulo bom">Ações consideradas</div>
+      ${feitos.map(o => `<div class="detalhe" style="margin-top:4px"><b>${esc(o.rotulo === "ruim" ? "⚠" : rotuloIcone(o.rotulo))}</b> ${esc(o.feedback)}</div>`).join("")}
+    </div>`;
+  }
+  if (evitados.length) {
+    fb += `<div class="feedback" style="border-color:var(--erro)">
+      <div class="rotulo ruim">⚠ Cuidado — você marcou algo a evitar nesta prova</div>
+      ${evitados.map(o => `<div class="reacao">${esc(o.feedback)}</div>`).join("")}
+    </div>`;
+  }
 
-  const feedback = el(`
-    <div class="feedback">
-      <div class="rotulo ${esc(rotuloCls)}">${rotuloTexto}</div>
-      <div class="detalhe">${esc(escolha.feedback)}</div>
-      ${escolha.reacao ? `<div class="reacao"><b>Paciente:</b> ${esc(escolha.reacao)}</div>` : ""}
-    </div>
-  `);
-  painel.appendChild(feedback);
+  const holder = painel.querySelector("#feedback-holder");
+  holder.innerHTML = fb;
 
-  const botao = el(`<button class="btn bloco" id="btn-proximo" style="margin-top:12px">Seguir →</button>`);
-  botao.addEventListener("click", () => {
+  const proximo = el(`<button class="btn bloco" id="btn-proximo" style="margin-top:12px">${
+    estado.indiceFase + 1 < estado.caso.fases.length ? "Próxima etapa →" : "Ver resultado 🏁"}</button>`);
+  proximo.addEventListener("click", () => {
     estado.indiceFase += 1;
     if (estado.indiceFase < estado.caso.fases.length) renderFase();
     else renderResumo();
   });
-  painel.appendChild(botao);
-  botao.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  holder.appendChild(proximo);
+  proximo.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
+
+function rotuloIcone(r) { return ({ bom: "✅", medio: "⚠️", ruim: "❌" })[r] || "•"; }
 
 /* ---------------- Resumo final ---------------- */
 
 function renderResumo() {
   const caso = estado.caso;
-  const cats = dados.RUBRICA;
 
-  let blocos = "";
-  if (cats.length) {
-    blocos += cats.map(cat => {
-      const obtido = (estado.pontos[cat.nome] || 0);
-      const max = cat.pontos_max || 0;
-      const pct = max > 0 ? Math.max(0, Math.min(100, (obtido / max) * 100)) : 0;
-      const cls = pct >= 70 ? "ok" : (pct >= 40 ? "fraca" : "");
-      return `
-        <div class="categoria">
-          <div class="cab"><span class="nome">${esc(cat.nome)}</span>
-            <span class="pts ${esc(cls)}">${obtido}/${max}</span></div>
-          <div class="barra-nota"><span style="width:${pct}%"></span></div>
-        </div>`;
-    }).join("");
-  } else {
-    blocos = `<div class="categoria"><div class="cab"><span class="nome">Sem checklist ainda</span></div>
-      <div class="detalhe" style="color:var(--texto-suave)">Adicione o conteúdo de avaliação para habilitar a pontuação por categoria.</div></div>`;
-  }
+  const blocos = dados.RUBRICA.map(cat => {
+    if (!caso.categorias || !caso.categorias.includes(cat.nome)) return ""; // só categorias do caso
+    const itens = cat.itens;
+    const cobertos = itens.filter(it => estado.coberto.has(it.id));
+    const faltando = itens.filter(it => !estado.coberto.has(it.id));
+    const pct = itens.length ? Math.round((cobertos.length / itens.length) * 100) : 0;
+    const cls = pct >= 70 ? "ok" : (pct >= 40 ? "fraca" : "");
+    const verdes = cobertos.map(it => `<li class="ok">✔ ${esc(it.texto)}</li>`).join("");
+    const vermelhos = faltando.map(it => `<li class="falta">✖ ${esc(it.texto)}</li>`).join("");
+    return `
+      <div class="categoria">
+        <div class="cab"><span class="nome">${esc(cat.nome)}</span>
+          <span class="pts ${esc(cls)}">${cobertos.length}/${itens.length}</span></div>
+        <div class="barra-nota"><span style="width:${pct}%"></span></div>
+        <ul class="itens-checagem">
+          ${verdes}
+          ${vermelhos}
+        </ul>
+      </div>`;
+  }).filter(Boolean).join("");
 
   const dicas = (caso.dicas || []).map(d => `<li>${esc(d)}</li>`).join("");
 
@@ -196,11 +213,12 @@ function renderResumo() {
     <div class="painel">
       <div class="fase-tag">Fim da entrevista</div>
       <h2 class="titulo-pagina">Resumo do caso</h2>
-      <p class="chamada">Hipótese diagnóstica esperada — <b>${esc(caso.hipotese || "—")}</b></p>
+      <p class="chamada">Hipótese diagnóstica de referência — <b>${esc(caso.hipotese || "—")}</b></p>
       <div class="resumo-pontos">${blocos}</div>
-      ${dicas ? `<div class="dicas"><b>Dicas para a prova</b><ul>${dicas}</ul></div>` : ""}
+      ${dicas ? `<div class="dicas"><b>Dicas-chave para a prova</b><ul>${dicas}</ul></div>` : ""}
+      ${estado.evitou.length ? `<div class="feedback" style="border-color:var(--erro)"><div class="rotulo ruim">Armadilhas que você marcou (evite na prova)</div>${estado.evitou.map(e => `<div class="reacao">${esc(e.escolha.feedback)}</div>`).join("")}</div>` : ""}
       <div class="acoes">
-        <button class="btn" id="btn-repetir">↻ Repetir caso</button>
+        <button class="btn" id="btn-repetir">↻ Repetir</button>
         <button class="btn secundario" id="btn-voltar-resumo">← Menu</button>
       </div>
     </div>
@@ -209,7 +227,7 @@ function renderResumo() {
   appEl.querySelector("#btn-voltar-resumo").addEventListener("click", () => { estado = null; renderHome(); });
 }
 
-/* ---------------- Carga dos dados ---------------- */
+/* ---------------- Carga ---------------- */
 
 function carregarDados() {
   Promise.all([
@@ -220,9 +238,7 @@ function carregarDados() {
     dados.RUBRICA = (rubrica && rubrica.categorias) || [];
     if (dados.CASOS.length) renderHome();
     else renderVazio();
-  }).catch(() => {
-    renderVazio();
-  });
+  }).catch(() => { renderVazio(); });
 }
 
 carregarDados();

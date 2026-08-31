@@ -1,4 +1,92 @@
 {
-  "_comentario": "Casos clinicos do simulador. Cada caso: id, titulo, hipotese de referencia, e fases (fluxo da entrevista). Opcoes tem texto, feedback, reacao do paciente e deltas por categoria do checklist (nome da categoria em rubrica.json).",
-  "casos": []
+  "_comentario": "Casos clinicos do simulador. Cada opcao tem 'cobre': ids dos itens do checklist (data/rubrica.json) que a acao realiza; o app soma os itens cobertos e mostra no resumo os que ficaram faltando.",
+  "casos": [
+    {
+      "id": "dor-abdominal-01",
+      "titulo": "Sra. Cláudia, 38 anos — dor na barriga há 2 dias",
+      "chamada": "Dor abdominal em cólica no baixo ventre. Ela não contará tudo sozinha — você precisa perguntar.",
+      "hipotese": "Doença inflamatória pélvica (DIP): mulher jovem com DIU + dor hipogástrica + corrimento + febre baixa. (referência de estudo)",
+      "categorias": ["Relação Estudante-Paciente", "Anamnese Geral", "Dor abdominal"],
+      "dicas": [
+        "Sempre se apresentar antes de qualquer pergunta clínica — é item do checklist.",
+        "Pergunte ATIVAMENTE sobre os medicamentos. Aqui ela estava 'só com a dor', mas o diabetes tipo 2 e a hipertensão só aparecem quando você pergunta.",
+        "Observe os sinais de ansiedade (aperta as mãos, desvia o olhar, voz baixa) e acolha com empatia naquele momento.",
+        "Sem jargão técnico nas perguntas — guarde os termos médicos só para o resumo final + hipótese.",
+        "Em dor abdominal de mulher em idade fértil, NÃO pule: história menstrual, sintomas geniturinários e histórico de doenças metabólicas."
+      ],
+      "fases": [
+        {
+          "tag": "Apresentação & Rapport",
+          "paciente": "A porta se abre. Uma mulher de cerca de 40 anos entra, senta-se na ponta da cadeira, aperta as mãos no colo e evita contato visual.",
+          "instrucao": "O que você faz nesta primeira etapa? Marque todas as ações que tomaria.",
+          "opcoes": [
+            { "texto": "Me apresento e pergunto como quer ser chamada: 'Olá, meu nome é ___, sou estudante de medicina. Como a senhora prefere ser chamada?'", "rotulo": "bom", "feedback": "Apresentar-se é item obrigatório e fundamental da Relação Estudante-Paciente.", "reacao": "Ela olha para você e responde em voz baixa: 'Cláudia...'", "cobre": ["rep01", "rep02", "rep03"] },
+            { "texto": "Percebo que ela está tensa e acolho: 'Vejo que a senhora está um pouco nervosa. Está tudo bem? Quero que saiba que vim para ajudá-la.'", "rotulo": "bom", "feedback": "Acolher o sinal de ansiedade com empatia é exatamente o que a prova avalia.", "reacao": "O ombro dela relaxa: 'Obrigada... é que tô preocupada com essa dor.'", "cobre": ["rep02", "anam11"] },
+            { "texto": "Explico que será uma entrevista e peço permissão: 'Vou fazer algumas perguntas para entender sua queixa. Posso conduzir a entrevista?'", "rotulo": "bom", "feedback": "Explicar que será conduzida uma entrevista é item do checklist.", "reacao": "'Pode sim, obrigada.'", "cobre": ["rep04"] },
+            { "texto": "Vou direto ao assunto, sem me apresentar: 'Bom, me conta o que a senhora está sentindo.'", "rotulo": "ruim", "feedback": "A prova exige que você SEMPRE se apresente antes de iniciar a anamnese. Não pule.", "reacao": "Ela se retrai, surpresa." }
+          ]
+        },
+        {
+          "tag": "Identificação & Queixa principal",
+          "paciente": "Cláudia diz: 'Doutor, eu vim porque tô com uma dor na barriga desde... anteontem.'",
+          "instrucao": "Como você conduz a identificação e o início da coleta? Marque as que faria.",
+          "opcoes": [
+            { "texto": "Pergunto a idade e completo a identificação: 'Posso anotar sua idade e seu nome? De onde a senhora é, qual sua profissão? Posso saber sua religião?'", "rotulo": "bom", "feedback": "Identificação completa (nome, idade, naturalidade, profissão, religião...) é parte da anamnese geral.", "reacao": "'Tenho 38 anos. Sou cozinheira, moro aqui na cidade.'", "cobre": ["anam01", "dor01"] },
+            { "texto": "Pergunto a queixa principal e a duração: 'Me conta melhor essa dor: desde quando começou, e o que a senhora sente?'", "rotulo": "bom", "feedback": "Queixa principal + duração é item do checklist.", "reacao": "'Faz uns dois dias. É uma dor que vai e vem, ali embaixo.'", "cobre": ["anam04"] },
+            { "texto": "Identifico o informante e a confiabilidade: 'É a senhora mesma quem me conta, certo? A senhora se sente bem para conversar?'", "rotulo": "bom", "feedback": "Identificar o informante principal e o grau de confiabilidade é item do checklist.", "reacao": "'Sou eu mesma, tô bem pra conversar.'", "cobre": ["anam03"] },
+            { "texto": "Pergunto apenas o nome e já pulo para a dor, sem o resto da identificação.", "rotulo": "medio", "feedback": "Identificação incompleta deixa itens do checklist de fora (religião, cor/raça/etnia, orientação sexual...).", "reacao": "Ela fornece só o nome." }
+          ]
+        },
+        {
+          "tag": "Dor — anamnese dirigida",
+          "paciente": "'A dor fica mais embaixo do umbigo. Ela aperta, vai e vem desde anteontem. Ontem à noite piorou.'",
+          "instrucao": "A Sra. Cláudia só descreve a dor se você perguntar. Marque as perguntas que faria.",
+          "opcoes": [
+            { "texto": "Investigo início e modo: 'Começou aos poucos ou de repente? Lembra o que estava fazendo? Caiu ou se esforçou?'", "rotulo": "bom", "feedback": "Investigar início e modo (trauma, esforço, espontâneo) é item do quadro de dor.", "reacao": "'Começou aos poucos, depois do almoço de sábado. Não bati nem me esforcei.'", "cobre": ["dor02"] },
+            { "texto": "Caracterizo a dor: 'Pode dizer como ela é — em cólica, constante, queimação, pontada?'", "rotulo": "bom", "feedback": "Características subjetivas da dor é item do checklist.", "reacao": "'É em cólica, vai e volta, mas aperta bastante.'", "cobre": ["dor03"] },
+            { "texto": "Localização e irradiação: 'A senhora pode apontar o lugar exato? E ela espalha para outro lugar, tipo as costas?'", "rotulo": "bom", "feedback": "Localização exata e irradiação são itens do quadro de dor abdominal.", "reacao": "Ela aponta o baixo ventre: 'Aqui. De vez em quando vai pras costas, na altura da cintura.'", "cobre": ["dor06", "dor07"] },
+            { "texto": "Duração e frequência: 'Esses dois dias a dor é contínua ou em crises? Quantas vezes por dia?'", "rotulo": "bom", "feedback": "Duração e frequência são itens do checklist.", "reacao": "'Umas 3 vezes por dia, cada crise dura umas 2 horas.'", "cobre": ["dor04", "dor05"] },
+            { "texto": "Fatores de piora e relação com alimento/posição: 'Dói mais quando anda, tosse, ou depois de comer? Melhora deitada ou de pé?'", "rotulo": "bom", "feedback": "Fatores de piora e relação com alimentos/posição são itens do quadro.", "reacao": "'Movimento piora. Comer não muda muito.'", "cobre": ["dor08", "dor09"] },
+            { "texto": "Pergunto se tomou algo para dor: 'Chegou a tomar algum remédio para essa dor?'", "rotulo": "bom", "feedback": "Perguntar sobre uso de analgésicos/opioides é item do checklist.", "reacao": "'Tomei um dipirona ontem, melhorou pouco.'", "cobre": ["dor10"] },
+            { "texto": "Pergunto sintomas associados: 'E tem enjoo, vômito? E o intestino, como está — diarreia, prisão de ventre?'", "rotulo": "bom", "feedback": "Náuseas/êmese e hábito intestinal são itens do quadro de dor.", "reacao": "'Enjoo um pouco. Intestino tá meio preso de uns dias.'", "cobre": ["dor11", "dor12"] }
+          ]
+        },
+        {
+          "tag": "Ginecologia & comorbidades",
+          "paciente": "Ao ser perguntada sobre o ciclo, Cláudia abaixa a voz: 'Minha menstruação é normal. Uso um DIU de cobre há uns 4 anos.'",
+          "instrucao": "Aqui está a parte que a prova cobra e muita gente pula. Marque o que você faria.",
+          "opcoes": [
+            { "texto": "Pergunto a história menstrual detalhada: 'Sua menstruação é regular? Quando foi a última? Tem corrimento ou sangramento?'", "rotulo": "bom", "feedback": "História menstrual detalhada é item essencial no quadro de dor de mulher em idade fértil — ajuda a apontar doença inflamatória pélvica.", "reacao": "'Regular, a última foi semana passada. De uns dias pra cá tô com um corrimento esbranquiçado.'", "cobre": ["dor13"] },
+            { "texto": "Pergunto sobre sintomas geniturinários: 'E ao urinar tem dor ou ardência? Tem corrimento ou cheiro?'", "rotulo": "bom", "feedback": "Sintomas geniturinários é item do quadro — diferencia infecção urinária/DIP.", "reacao": "'Arde um pouquinho ao urinar, e tô com um corrimento.'", "cobre": ["dor15"] },
+            { "texto": "Pergunto se tem febre: 'A senhora mediu a temperatura? Teve calafrios?'", "rotulo": "bom", "feedback": "Febre ajuda a fechar quadro inflamatório/infeccioso.", "reacao": "'Ontem à noite deu uma febre baixa, 37,8.'", "cobre": ["dor15"] },
+            { "texto": "Pergunto ATIVAMENTE sobre medicamentos e doenças: 'Quais remédios a senhora usa no dia a dia? Tem alguma doença, como pressão alta ou diabetes?'", "rotulo": "bom", "feedback": "← PONTO-CHAVE. O professor não dá informação completa. É perguntando sobre a medicação que a morbidade escondida aparece. Aqui ela estava 'só com a dor', mas revela o diabetes quando você pergunta.", "reacao": "'Ah, eu não tinha falado... Tomo metformina, tenho diabetes tipo 2. E minha pressão também não é normal, tomo remédio da pressão.'", "cobre": ["dor16", "anam06"] },
+            { "texto": "Pergunto sobre distúrbios funcionais: 'Já teve diagnóstico de Síndrome do Intestino Irritável ou problema nos nervos do intestino?'", "rotulo": "bom", "feedback": "Investigar distúrbios funcionais (SII) é item do quadro.", "reacao": "'Nunca ouvi falar disso.'", "cobre": ["dor17"] },
+            { "texto": "Não pergunto sobre medicamentos nem doenças — sigo para o restante do ISDA.", "rotulo": "ruim", "feedback": "← É exatamente aqui que a prova te derruba: sem perguntar sobre medicação você NÃO descobre o diabetes/hipertensão escondidos, e o avaliador registra 'não realizado'. A comorbidade só aparece com a pergunta ativa.", "reacao": "Cláudia não menciona o diabetes." }
+          ]
+        },
+        {
+          "tag": "ISDA, hábitos, impacto e comunicação não verbal",
+          "paciente": "Cláudia se remexe na cadeira; a voz fica mais baixa e ela aperta as mãos de novo quando o assunto muda.",
+          "instrucao": "Marque as ações que faria para fechar a anamnese geral e acolher o novo sinal de ansiedade.",
+          "opcoes": [
+            { "texto": "Percorro o ISDA sem jargão: 'Além da dor, te incomoda alguma outra coisa — coração, respiração, cabeça, urina?'", "rotulo": "bom", "feedback": "Fazer o ISDA (interrogatório por aparelhos) é item da anamnese geral.", "reacao": "'Nada que eu note.'", "cobre": ["anam07"] },
+            { "texto": "Noto que ela apertou as mãos de novo e acolho: 'Vejo que a senhora ficou apreensiva de novo. Está tudo bem? Pode falar com calma, estou aqui para ajudar.'", "rotulo": "bom", "feedback": "O professor encena SINAIS DE ANSIEDADE ao longo da prova — reconhecer e acolher com empatia é item da Relação Estudante-Paciente.", "reacao": "Ela solta o ar: 'É que me assusta essa dor, nunca senti igual. Obrigada por perguntar.'", "cobre": ["rep02", "anam11"] },
+            { "texto": "Pergunto hábitos e estilo de vida: 'A senhora fuma, bebe? Como é seu sono e sua alimentação?'", "rotulo": "bom", "feedback": "Hábitos e estilo de vida é item da anamnese geral.", "reacao": "'Não fumo, bebo raramente. Durmo mal de uns dias.'", "cobre": ["anam08"] },
+            { "texto": "Pergunto antecedentes familiares: 'Alguém na sua família tem diabetes, câncer, problema de coração?'", "rotulo": "bom", "feedback": "Antecedentes familiares é item do checklist.", "reacao": "'Minha mãe tem diabetes também.'", "cobre": ["anam09"] },
+            { "texto": "Pergunto o impacto da queixa na vida: 'Como essa dor está afetando seu dia a dia? Deixou de trabalhar?'", "rotulo": "bom", "feedback": "Impacto da queixa na vida é item do checklist — valoriza o olhar biopsicossocial.", "reacao": "'Ontem tive que faltar no trabalho.'", "cobre": ["anam10"] }
+          ]
+        },
+        {
+          "tag": "Resumo & Hipótese",
+          "paciente": "Chega a hora de fechar. Cláudia aguarda.",
+          "instrucao": "No final, VOCÊ faz o resumo do caso e apresenta a hipótese. Agora SIM pode usar termos técnicos.",
+          "opcoes": [
+            { "texto": "Faço um resumo completo com o diabetes revelado e apresento a hipótese: 'A senhora é uma mulher de 38 anos, com diabetes tipo 2, com dor em hipogástrio em cólica há 2 dias, corrimento e febre baixa, usando DIU. Minha principal hipótese é doença inflamatória pélvica.'", "rotulo": "bom", "feedback": "O resumo final é onde o jargão técnico é apropriado e esperado — e a hipótese deve ser apresentada com clareza.", "reacao": "Cláudia acena compreensiva.", "cobre": ["anam05"] },
+            { "texto": "Faço um resumo, mas omito o diabetes revelado e não apresento hipótese clara.", "rotulo": "medio", "feedback": "O resumo deve fechar o caso incluindo o que foi revelado, e a hipótese é o objetivo final da prova.", "reacao": "O avaliador aguarda a hipótese." },
+            { "texto": "Durante a entrevista, uso jargão técnico com a paciente (ex.: 'tem alguma comorbidade? algum sintoma geniturinário?').", "rotulo": "ruim", "feedback": "→ O avaliador registra: NÃO usar jargão técnico ao perguntar sobre sintomas. Só no resumo final. Isso é cobrado explicitamente.", "reacao": "Cláudia mostra expressão confusa, sem entender." }
+          ]
+        }
+      ]
+    }
+  ]
 }

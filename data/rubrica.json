@@ -1,4 +1,86 @@
 {
-  "_comentario": "Checklist de avaliacao da anamnese (UC4). Gerado pelo tools/parse_rubrica.py a partir do conteudo de referencia em rubrica/. Estrutura: cada categoria tem 'nome' e 'pontos_max'; o app soma por categoria e mostra nota/max.",
-  "categorias": []
+  "_comentario": "Checklist de avaliacao da anamnese (UC4). Cada categoria tem itens com id; o app marca quais itens o aluno perguntou/fez e mostra no resumo os que ficaram faltando. Conteudo montado localmente no PC a partir do material de referencia, sem referencia publica a origem.",
+  "categorias": [
+    {
+      "nome": "Relação Estudante-Paciente",
+      "itens": [
+        { "id": "rep01", "texto": "Cumprimenta o paciente e apresenta-se" },
+        { "id": "rep02", "texto": "Trata o paciente com respeito e empatia" },
+        { "id": "rep03", "texto": "Respeita as diferenças culturais e sociais" },
+        { "id": "rep04", "texto": "Explica que será conduzida uma entrevista" }
+      ]
+    },
+    {
+      "nome": "Anamnese Geral",
+      "itens": [
+        { "id": "anam01", "texto": "Identificação completa (nome, idade, sexo, cor/raça/etnia, naturalidade, estado civil, profissão, religião, identidade de gênero e orientação sexual)" },
+        { "id": "anam02", "texto": "Considera necessidades específicas (neurodivergência, déficit cognitivo, dificuldade visual/auditiva, fobia social) e identidade de gênero" },
+        { "id": "anam03", "texto": "Identifica o informante principal e o grau de confiabilidade" },
+        { "id": "anam04", "texto": "Pergunta a queixa principal e a duração" },
+        { "id": "anam05", "texto": "Investiga a História da Moléstia Atual (HMA)" },
+        { "id": "anam06", "texto": "Investiga os antecedentes pessoais" },
+        { "id": "anam07", "texto": "Faz o Interrogatório Sintomático dos Diversos Aparelhos (ISDA)" },
+        { "id": "anam08", "texto": "Investiga hábitos e estilo de vida" },
+        { "id": "anam09", "texto": "Investiga os antecedentes familiares" },
+        { "id": "anam10", "texto": "Pergunta o impacto da queixa na vida da pessoa" },
+        { "id": "anam11", "texto": "Observa a comunicação não verbal da pessoa" }
+      ]
+    },
+    {
+      "nome": "Dor abdominal",
+      "itens": [
+        { "id": "dor01", "texto": "Pergunta a idade do paciente" },
+        { "id": "dor02", "texto": "Investiga quando ocorreu e o modo de início da dor (trauma, espontâneo, esforço)" },
+        { "id": "dor03", "texto": "Questiona as características subjetivas da dor (cólica, constante, queimação, pontada)" },
+        { "id": "dor04", "texto": "Investiga a duração dos sintomas" },
+        { "id": "dor05", "texto": "Investiga a frequência dos sintomas" },
+        { "id": "dor06", "texto": "Solicita que o paciente aponte a localização exata da dor" },
+        { "id": "dor07", "texto": "Investiga os locais de irradiação (tórax, escápula, ombros, lombar/sacral, genitália)" },
+        { "id": "dor08", "texto": "Questiona fatores de piora (tosse, espirro, palpação, movimento)" },
+        { "id": "dor09", "texto": "Questiona relação com ingestão de alimentos, posição ereta ou decúbito" },
+        { "id": "dor10", "texto": "Questiona uso prévio de analgésicos/opioides para alívio" },
+        { "id": "dor11", "texto": "Questiona náuseas, êmese e anorexia" },
+        { "id": "dor12", "texto": "Investiga diarreia, constipação ou alterações do hábito intestinal" },
+        { "id": "dor13", "texto": "Coleta a história menstrual detalhada" },
+        { "id": "dor14", "texto": "Questiona ativamente sintomas cardiotorácicos" },
+        { "id": "dor15", "texto": "Questiona sintomas geniturinários" },
+        { "id": "dor16", "texto": "Questiona histórico de doenças metabólicas" },
+        { "id": "dor17", "texto": "Investiga histórico de distúrbios neurológicos, psiquiátricos ou funcionais (ex.: Síndrome do Intestino Irritável)" }
+      ]
+    },
+    {
+      "nome": "Dispneia",
+      "itens": [
+        { "id": "disp01", "texto": "Pede para descrever a sensação com as próprias palavras (aperto, fome de ar, incapacidade de respirar fundo)" },
+        { "id": "disp02", "texto": "Investiga a evolução temporal (agudo/intermitente, crônico/persistente, dispneia noturna)" },
+        { "id": "disp03", "texto": "Avalia o efeito da posição corporal (ortopneia e platipneia)" },
+        { "id": "disp04", "texto": "Questiona infecções recentes ou estímulos ambientais" },
+        { "id": "disp05", "texto": "Investiga fatores de risco (exposição ocupacional, doenças prévias)" },
+        { "id": "disp06", "texto": "Questiona febre, tosse e expectoração" },
+        { "id": "disp07", "texto": "Pergunta sobre dor torácica (tipo, frequência, fatores de piora/melhora)" },
+        { "id": "disp08", "texto": "Questiona dispneia aos esforços e equivalentes isquêmicos (dor nas costas, arritmias, dor em ambas as mandíbulas)" },
+        { "id": "disp09", "texto": "Investiga o histórico alérgico" },
+        { "id": "disp10", "texto": "Pergunta sobre tosse e características (produtiva, espumosa)" },
+        { "id": "disp11", "texto": "Investiga hemoptise" },
+        { "id": "disp12", "texto": "Questiona sinais de anemia (astenia, letargia, indisposição)" }
+      ]
+    },
+    {
+      "nome": "Edema",
+      "itens": [
+        { "id": "ede01", "texto": "Investiga o tempo de instalação (agudo/crônico) e duração" },
+        { "id": "ede02", "texto": "Investiga a evolução ao longo do dia" },
+        { "id": "ede03", "texto": "Delimita a localização" },
+        { "id": "ede04", "texto": "Questiona ativamente sobre ganho de peso recente" },
+        { "id": "ede05", "texto": "Pesquisa sintomas de insuficiência cardíaca (dispneia, ortopneia, dispneia paroxística noturna)" },
+        { "id": "ede06", "texto": "Pergunta número de travesseiros / elevação da cabeceira" },
+        { "id": "ede07", "texto": "Pesquisa sintomas de doença hepática (volume abdominal, icterícia, confusão, tremores, eritema palmar, teleangectasias)" },
+        { "id": "ede08", "texto": "Pesquisa indícios de doença renal (urina espumosa, inchaço palpebral) ou inflamatório/alérgico" },
+        { "id": "ede09", "texto": "Revisa detalhadamente o uso de medicamentos contínuos que causam edema (ex.: anlodipina) e a correlação com o início" },
+        { "id": "ede10", "texto": "Pergunta sobre trauma local ou cirurgias prévias" },
+        { "id": "ede11", "texto": "Questiona sinais de insuficiência venosa periférica" },
+        { "id": "ede12", "texto": "Investiga sintomas de hipotireoidismo" }
+      ]
+    }
+  ]
 }

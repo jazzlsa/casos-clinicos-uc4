@@ -135,6 +135,14 @@ body {
 .opcao:hover { background: var(--botao-hover); }
 .opcao.selecionada { background: var(--selecionado); color: var(--selecionado-texto); border-color: var(--selecionado); }
 
+.opcao-multi { display: flex; gap: 10px; align-items: flex-start; }
+.opcao-multi .check { flex: 0 0 auto; }
+.opcao-multi.selecionada .check { opacity: .85; }
+.opcao.bloqueada { cursor: default; }
+.opcao.bloqueada:hover { background: var(--botao); }
+
+.dica-fase { color: var(--texto-suave); font-size: 13.5px; margin: 2px 0 6px; }
+
 /* Feedback após escolher */
 .feedback {
   margin-top: 14px; border-radius: 12px; padding: 14px 16px;
@@ -196,6 +204,10 @@ body {
 .categoria .pts.fraca { color: var(--alerta); }
 .barra-nota { height: 8px; background: var(--botao); border-radius: 6px; overflow: hidden; }
 .barra-nota > span { display: block; height: 100%; background: var(--primaria); }
+.itens-checagem { list-style: none; margin: 10px 0 0; padding: 0; font-size: 13px; max-height: 220px; overflow-y: auto; border-top: 1px dashed var(--borda); padding-top: 8px; }
+.itens-checagem li { padding: 2px 0; }
+.itens-checagem li.ok { color: var(--acerto); }
+.itens-checagem li.falta { color: var(--texto-suave); }
 .dicas { margin-top: 14px; }
 .dicas ul { padding-left: 18px; margin: 6px 0 0; color: var(--texto-suave); font-size: 14px; }
 
