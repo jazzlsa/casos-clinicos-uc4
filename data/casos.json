@@ -59,6 +59,18 @@
               "rotulo": "ruim",
               "feedback": "A prova exige que você SEMPRE se apresente antes de iniciar a anamnese. Não pule.",
               "reacao": "Ela se retrai, surpresa."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Me apresento pelo nome, mas peço logo a queixa sem explicar que vou conduzir uma entrevista nem perguntar como prefere ser chamada.",
+              "feedback": "Apresentar-se é obrigatório, mas sem explicar a natureza da entrevista (item do checklist) e sem abrir espaço para ela, o rapport fica incompleto.",
+              "reacao": "Ela fornece o nome, mas segue tensa e falando baixo."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Percebo que ela está nervosa e acalmo, mas esqueço de me identificar — começo já com a acolhida.",
+              "feedback": "Acolher a ansiedade é ótimo, mas a prova exige que você SE APRESENTE antes de iniciar a anamnese. Não deixe a identificação de fora.",
+              "reacao": "Ela relaxa um pouco, mas espera saber quem a está atendendo."
             }
           ]
         },
@@ -100,6 +112,24 @@
               "rotulo": "medio",
               "feedback": "Identificação incompleta deixa itens do checklist de fora (religião, cor/raça/etnia, orientação sexual...).",
               "reacao": "Ela fornece só o nome."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Faço a identificação completa, mas não pergunto a queixa principal nem a duração — já sigo direto para os detalhes da dor.",
+              "feedback": "Identificar é parte da anamnese, mas a QUEIXA PRINCIPAL + DURAÇÃO é item próprio e deve ser perguntada.",
+              "reacao": "Ela continua aguardando que você pergunte o motivo da vinda."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Pergunto a queixa e a duração, mas não identifico o informante nem o grau de confiabilidade.",
+              "feedback": "Identificar o informante principal e a confiabilidade é item do checklist; pode haver outra pessoa contando a história.",
+              "reacao": "Ela responde, mas você não confirma quem relata."
+            },
+            {
+              "rotulo": "ruim",
+              "texto": "Como ela já veio dizendo que \"tá com dor\", deduzo a queixa principal e a duração sem perguntar nada sobre isso.",
+              "feedback": "Nunca deduza a queixa principal — perguntar a queixa e a duração é item cobrado.",
+              "reacao": "Ela esperava ser perguntada."
             }
           ]
         },
@@ -174,6 +204,24 @@
                 "dor11",
                 "dor12"
               ]
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Pergunto só o quanto ela classifica a dor de 0 a 10, sem pedir a localização exata nem as características.",
+              "feedback": "Intensidade isolada não substitui a localização exata, as características, o início e os fatores — o quadro de dor pede tudo isso.",
+              "reacao": "Ela nota a intensidade, mas você fica sem a descrição completa."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Foco somente na dor e não pergunto os sintomas associados (enjoo, intestino) \"porque a queixa é só a dor\".",
+              "feedback": "Náuseas, êmese e o hábito intestinal são itens próprios do quadro de dor — não os pule.",
+              "reacao": "Ela não menciona o enjoo, que você deixou de perguntar."
+            },
+            {
+              "rotulo": "ruim",
+              "texto": "Investigo a dor usando termos técnicos com a paciente para parecer mais preciso (ex.: \"tem disúria? alguma comorbidade?\").",
+              "feedback": "Usar jargão técnico AO PERGUNTAR sobre sintomas é cobrado como erro — reserve os termos para o resumo final.",
+              "reacao": "Cláudia mostra expressão confusa, sem entender."
             }
           ]
         },
@@ -233,6 +281,24 @@
               "rotulo": "ruim",
               "feedback": "← É exatamente aqui que a prova te derruba: sem perguntar sobre medicação você NÃO descobre o diabetes/hipertensão escondidos, e o avaliador registra 'não realizado'. A comorbidade só aparece com a pergunta ativa.",
               "reacao": "Cláudia não menciona o diabetes."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Pergunto sobre o ciclo menstrual e o corrimento, mas não pergunto sobre medicamentos nem doenças — deixo o diabetes escondido passar.",
+              "feedback": "← AQUI está a armadilha central: sem perguntar sobre medicação/doenças você NÃO descobre o diabetes e a hipertensão, e o avaliador registra \"não realizado\".",
+              "reacao": "Cláudia não revela o diabetes, que fica de fora do caso."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Pergunto ativamente sobre medicamentos e doenças, mas não investigo sintomas geniturinários nem febre.",
+              "feedback": "Boa pergunta sobre medicamentos, mas o quadro de dor pede também os sintomas geniturinários e a febre para fechar DIP.",
+              "reacao": "Ela revela o diabetes, mas os demais sinais ficam sem perguntar."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Pergunto só se ela \"tem dor para urinar\", sem perguntar sobre o ciclo menstrual nem o corrimento.",
+              "feedback": "Em dor abdominal de mulher em idade fértil, a história menstrual detalhada e o corrimento são itens essenciais.",
+              "reacao": "Ela não menciona o corrimento."
             }
           ]
         },
@@ -286,6 +352,24 @@
               "cobre": [
                 "anam10"
               ]
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Pergunto sobre tabagismo e sono, mas não percorro o restante dos sistemas (ISDA) nem o impacto da queixa na vida.",
+              "feedback": "O ISDA e o impacto na vida são itens próprios da anamnese geral — não os pule.",
+              "reacao": "Ela responde sobre os hábitos, mas as demais queixas ficam sem investigar."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Faço o ISDA, mas não percebo nem acolho o novo sinal de ansiedade quando o assunto muda.",
+              "feedback": "Ela APERTA AS MÃOS de novo — o professor encena sinais de ansiedade para você acolher com empatia naquele momento.",
+              "reacao": "Cláudia se remexe, apreensiva, sem ser acolhida."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Pergunto antecedentes familiares e hábitos, mas pulo o impacto da queixa na vida dela (deixou de trabalhar?).",
+              "feedback": "Perguntar o impacto da queixa na vida é item do checklist e valoriza o olhar biopsicossocial.",
+              "reacao": "Você fica sem saber que ela faltou ao trabalho."
             }
           ]
         },
@@ -314,6 +398,24 @@
               "rotulo": "ruim",
               "feedback": "→ O avaliador registra: NÃO usar jargão técnico ao perguntar sobre sintomas. Só no resumo final. Isso é cobrado explicitamente.",
               "reacao": "Cláudia mostra expressão confusa, sem entender."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Apresento uma hipótese, mas o resumo omite o corrimento e a febre, focando só na localização da dor.",
+              "feedback": "O resumo final deve integrar os dados revelados (corrimento, febre, diabetes) para sustentar a hipótese de DIP.",
+              "reacao": "O avaliador nota o resumo incompleto."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Dou a hipótese de DIP, mas com insegurança, como dúvida aberta (\"pode ser DIP... ou talvez outra coisa\") sem uma conclusão clara.",
+              "feedback": "A prova valoriza uma hipótese apresentada com clareza; a insegurança total enfraquece o fechamento.",
+              "reacao": "O avaliador aguarda uma conclusão firme."
+            },
+            {
+              "rotulo": "ruim",
+              "texto": "No resumo final, misturo a fala com a paciente usando jargão técnico sem explicar (ex.: \"sua disúria e o ISDA apontam para DIP\").",
+              "feedback": "Mesmo no resumo, deve-se fechar em linguagem acessível e apresentar a hipótese com clareza, sem despejar termos soltos.",
+              "reacao": "Cláudia não compreende o que foi dito."
             }
           ]
         }
@@ -378,6 +480,18 @@
               "rotulo": "ruim",
               "feedback": "A prova exige que você SEMPRE se apresente antes de iniciar a anamnese. Não pule.",
               "reacao": "Ele arqueia a sobrancelha, um pouco surpreso."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Me apresento pelo nome, mas peço logo a queixa sem explicar que vou conduzir uma entrevista nem perguntar como prefere ser chamado.",
+              "feedback": "Apresentar-se é obrigatório, mas sem explicar a natureza da entrevista o rapport fica incompleto (item do checklist).",
+              "reacao": "Ele fornece o nome, mas segue ansioso e ofegante."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Percebo que ele está ofegante e acalmo, mas esqueço de me identificar — começo já com a acolhida.",
+              "feedback": "Acolher o desconforto é ótimo, mas a prova exige que você SE APRESENTE antes de iniciar.",
+              "reacao": "Ele relaxa um pouco, mas espera saber quem o atende."
             }
           ]
         },
@@ -418,6 +532,24 @@
               "rotulo": "medio",
               "feedback": "Identificação incompleta deixa itens do checklist de fora (religião, cor/raça/etnia, orientação sexual...).",
               "reacao": "Ele fornece só o nome."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Faço a identificação completa, mas não pergunto a queixa principal nem a duração — sigo direto para a falta de ar.",
+              "feedback": "A QUEIXA PRINCIPAL + DURAÇÃO é item próprio do checklist; identifique e pergunte o motivo.",
+              "reacao": "Ele aguarda você perguntar o motivo da vinda."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Pergunto a queixa e a duração, mas não identifico o informante nem o grau de confiabilidade.",
+              "feedback": "Identificar o informante principal e a confiabilidade é item do checklist.",
+              "reacao": "Você não confirma quem relata a história."
+            },
+            {
+              "rotulo": "ruim",
+              "texto": "Como ele já disse que \"tem falta de ar\", deduzo a queixa principal e a duração sem perguntar.",
+              "feedback": "Nunca deduza a queixa — perguntar a queixa e a duração é item cobrado.",
+              "reacao": "Ele esperava ser perguntado."
             }
           ]
         },
@@ -479,6 +611,24 @@
               "cobre": [
                 "disp06"
               ]
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Pergunto só o quanto ele classifica a falta de ar de 0 a 10, sem pedir para descrever a sensação nem a evolução temporal.",
+              "feedback": "Descrever a sensação com as próprias palavras e a evolução temporal são itens essenciais do quadro de dispneia.",
+              "reacao": "Ele nota a intensidade, mas você fica sem a descrição."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Pergunto a evolução e a posição de dormir, mas não pergunto sobre dor torácica nem sintomas associados (febre, tosse).",
+              "feedback": "Dor torácica e febre/tosse/expectoração são itens próprios do quadro — não os pule.",
+              "reacao": "A tosse e a opressão ficam sem investigar."
+            },
+            {
+              "rotulo": "ruim",
+              "texto": "Investigo a falta de ar com termos técnicos ao perguntar (ex.: \"tem ortopneia? dispneia paroxística noturna?\").",
+              "feedback": "Usar jargão AO PERGUNTAR é cobrado como erro — reserve os termos para o resumo final.",
+              "reacao": "Seu Antônio não entende as perguntas."
             }
           ]
         },
@@ -546,6 +696,24 @@
               "rotulo": "ruim",
               "feedback": "← É exatamente aqui que a prova te derruba: sem perguntar sobre ocupação/exposição e alergia você NÃO descobre a asma ocupacional, e o avaliador registra 'não realizado'. A chave do caso só aparece com a pergunta ativa.",
               "reacao": "Seu Antônio não menciona a piora no trabalho."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Pergunto sobre alergias e rinite, mas não investigo a exposição ocupacional (onde trabalha, a farinha) — deixando a chave do caso de fora.",
+              "feedback": "← AQUI está a armadilha central: sem perguntar sobre o trabalho/exposição você NÃO descobre a asma ocupacional.",
+              "reacao": "A piora no expediente fica oculta."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Pergunto sobre o trabalho e a exposição, mas não pergunto sobre a tosse, hemoptise nem sinais de anemia.",
+              "feedback": "Tosse e características, hemoptise e sinais de anemia são itens próprios do quadro — complete a investigação.",
+              "reacao": "A tosse e o cansaço ficam sem perguntar."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Pergunto sobre febre e catarro, mas não investigo o histórico alérgico nem a atopia.",
+              "feedback": "O histórico alérgico é um dos dois pilares que fecham a asma (junto da exposição) — não o pule.",
+              "reacao": "A rinite da infância não vem à tona."
             }
           ]
         },
@@ -608,6 +776,18 @@
                 "rep02",
                 "anam11"
               ]
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Pergunto sobre hábitos (tabagismo) e família, mas não percorro o ISDA nem o impacto da queixa na vida.",
+              "feedback": "O ISDA e o impacto na vida são itens próprios da anamnese geral.",
+              "reacao": "Outras queixas e o impacto no trabalho ficam sem investigar."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Faço o ISDA, mas não acolho o desconforto respiratório que ele demonstra no momento (se inclina, chiando).",
+              "feedback": "Reconhecer e acolher o desconforto encenado com empatia é item da Relação Estudante-Paciente.",
+              "reacao": "Ele se inclina, ofegante, sem ser acolhido."
             }
           ]
         },
@@ -636,6 +816,24 @@
               "rotulo": "ruim",
               "feedback": "→ O avaliador registra: NÃO usar jargão técnico ao perguntar sobre sintomas. Só no resumo final. Isso é cobrado explicitamente.",
               "reacao": "Seu Antônio mostra expressão confusa, sem entender."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Apresento a hipótese de asma, mas o resumo omite a exposição à farinha e a atopia no raciocínio.",
+              "feedback": "O resumo final deve integrar os dados revelados (exposição à farinha + atopia) para sustentar a asma ocupacional.",
+              "reacao": "O avaliador nota o resumo incompleto."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Dou a hipótese de asma com insegurança (\"pode ser asma... ou algo do coração\") sem uma conclusão clara.",
+              "feedback": "Apresente a hipótese com clareza; a dúvida aberta enfraquece o fechamento.",
+              "reacao": "O avaliador aguarda uma conclusão firme."
+            },
+            {
+              "rotulo": "ruim",
+              "texto": "No resumo, misturo jargão técnico com o paciente sem explicar (ex.: \"a sibilância e a ortopneia indicam asma\").",
+              "feedback": "Feche o resumo em linguagem acessível e apresente a hipótese com clareza.",
+              "reacao": "Seu Antônio não compreende."
             }
           ]
         }
@@ -700,6 +898,18 @@
               "rotulo": "ruim",
               "feedback": "A prova exige que você SEMPRE se apresente antes de iniciar a anamnese. Não pule.",
               "reacao": "Ela arqueia a sobrancelha, um pouco surpresa."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Me apresento pelo nome, mas peço logo a queixa sem explicar que vou conduzir uma entrevista nem perguntar como prefere ser chamada.",
+              "feedback": "Apresentar-se é obrigatório, mas sem explicar a natureza da entrevista o rapport fica incompleto (item do checklist).",
+              "reacao": "Ela fornece o nome, mas segue incomodada."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Percebo que ela tem dificuldade para andar e acalmo, mas esqueço de me identificar — começo já com a acolhida.",
+              "feedback": "Acolher é ótimo, mas a prova exige que você SE APRESENTE antes de iniciar a anamnese.",
+              "reacao": "Ela relaxa um pouco, mas espera saber quem a atende."
             }
           ]
         },
@@ -740,6 +950,24 @@
               "rotulo": "medio",
               "feedback": "Identificação incompleta deixa itens do checklist de fora (religião, cor/raça/etnia, orientação sexual...).",
               "reacao": "Ela fornece só o nome."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Faço a identificação completa, mas não pergunto a queixa principal nem a duração — sigo direto ao inchaço.",
+              "feedback": "A QUEIXA PRINCIPAL + DURAÇÃO é item próprio do checklist.",
+              "reacao": "Ela aguarda você perguntar o motivo da vinda."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Pergunto a queixa e a duração, mas não identifico o informante nem o grau de confiabilidade.",
+              "feedback": "Identificar o informante principal e a confiabilidade é item do checklist.",
+              "reacao": "Você não confirma quem relata a história."
+            },
+            {
+              "rotulo": "ruim",
+              "texto": "Como ela já disse que \"as pernas estão inchadas\", deduzo a queixa principal e a duração sem perguntar.",
+              "feedback": "Nunca deduza a queixa — perguntar a queixa e a duração é item cobrado.",
+              "reacao": "Ela esperava ser perguntada."
             }
           ]
         },
@@ -783,6 +1011,24 @@
               "cobre": [
                 "ede04"
               ]
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Pergunto só o quanto as pernas estão inchadas e se dói, sem investigar o tempo de instalação, a evolução ao longo do dia nem a localização.",
+              "feedback": "Tempo de instalação, evolução diária e localização são itens essenciais do quadro de edema.",
+              "reacao": "Ela descreve o inchaço, mas falta a caracterização completa."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Investigo a localização e a evolução ao longo do dia, mas não pergunto sobre o ganho de peso recente.",
+              "feedback": "Perguntar ativamente sobre ganho de peso recente é item do quadro de edema.",
+              "reacao": "O ganho de 3 kg e a aliança apertada ficam ocultos."
+            },
+            {
+              "rotulo": "ruim",
+              "texto": "Chamo logo o inchaço de \"retenção de líquido\" e pergunto só se ela está \"se alimentando muito sal\".",
+              "feedback": "Rotular precocemente e perguntar só sobre o sal deixa de fora os itens que caracterizam o edema (instalação, evolução, localização, peso).",
+              "reacao": "Ela se confunde com o termo técnico."
             }
           ]
         },
@@ -868,6 +1114,24 @@
               "rotulo": "ruim",
               "feedback": "← É exatamente aqui que a prova te derruba: sem perguntar sobre os remédios você NÃO descobre a anlodipina nem a correlação com o início, e o avaliador registra 'não realizado'. A chave do caso só aparece com a pergunta ativa.",
               "reacao": "Dona Maria não menciona a anlodipina nem a piora do inchaço depois dela."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Investigo os sintomas de coração (falta de ar, travesseiros), mas não pergunto sobre os medicamentos — deixando a anlodipina escondida.",
+              "feedback": "← AQUI está a armadilha central: sem revisar os medicamentos você NÃO descobre a anlodipina nem a correlação com o início.",
+              "reacao": "A anlodipina e o início do inchaço ficam ocultos."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Pergunto sobre os medicamentos, mas não pesquiso as causas renal, hepática, tireoidiana nem venosa.",
+              "feedback": "O quadro de edema pede a triagem das demais causas (renal, hepática, tireoidiana, venosa) além da medicação.",
+              "reacao": "Você fecha a anlodipina, mas as outras causas ficam sem investigar."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Só pergunto se \"as veias estão estouradas\" (insuficiência venosa), sem revisar a medicação nem o coração.",
+              "feedback": "Focar só na causa venosa deixa de fora a medicação e os sintomas de insuficiência cardíaca, centrais no caso.",
+              "reacao": "O quadro de coração e a anlodipina ficam sem perguntar."
             }
           ]
         },
@@ -930,6 +1194,18 @@
                 "rep02",
                 "anam11"
               ]
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Pergunto hábitos e antecedentes familiares, mas não percorro o ISDA nem pergunto o impacto da queixa na vida.",
+              "feedback": "O ISDA e o impacto na vida são itens próprios da anamnese geral.",
+              "reacao": "Outras queixas e o impacto no dia a dia ficam sem investigar."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Faço o ISDA, mas não acolho a apreensão que ela demonstra quando o assunto é o sono.",
+              "feedback": "Reconhecer e acolher a ansiedade encenada com empatia é item da Relação Estudante-Paciente.",
+              "reacao": "Ela aperta as mãos, preocupada, sem ser acolhida."
             }
           ]
         },
@@ -958,6 +1234,24 @@
               "rotulo": "ruim",
               "feedback": "→ O avaliador registra: NÃO usar jargão técnico ao perguntar sobre sintomas. Só no resumo final. Isso é cobrado explicitamente.",
               "reacao": "Dona Maria mostra expressão confusa, sem entender."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Apresento a hipótese, mas o resumo omite a anlodipina e os sintomas de insuficiência cardíaca no raciocínio.",
+              "feedback": "O resumo final deve integrar a medicação e os sintomas de coração para sustentar a hipótese.",
+              "reacao": "O avaliador nota o resumo incompleto."
+            },
+            {
+              "rotulo": "medio",
+              "texto": "Localizo o problema só \"nas pernas\" (charismo/varizes), sem integrar a falta de ar e o ganho de peso no contexto.",
+              "feedback": "É preciso integrar os achados (falta de ar, ortopneia, ganho de peso) e não reduzir o caso às varizes.",
+              "reacao": "O avaliador percebe a visão estreita do caso."
+            },
+            {
+              "rotulo": "ruim",
+              "texto": "No resumo, uso jargão técnico com a paciente sem explicar (ex.: \"é uma insuficiência com anasarca e ortopneia\").",
+              "feedback": "Feche o resumo em linguagem acessível e apresente a hipótese com clareza.",
+              "reacao": "Dona Maria não compreende."
             }
           ]
         }

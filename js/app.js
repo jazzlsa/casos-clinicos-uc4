@@ -311,7 +311,11 @@ function enviarEscrita(painel) {
   if (faltando.length) {
     html += `<div class="feedback" style="border-color:var(--alerta)">
       <div class="rotulo ruim">⚠ Nesta etapa também se esperava perguntar sobre</div>
-      ${faltando.map(id => `<div class="detalhe esc-falta">✖ ${esc(tituloDoItem(id))}</div>`).join("")}
+      ${faltando.map(id => {
+        const ideal = idealDoItem(f, id);
+        return `<div class="detalhe esc-falta">✖ ${esc(tituloDoItem(id))}${
+          ideal ? `<div class="ideal">Como perguntar: <i>${esc(ideal)}</i></div>` : ""}</div>`;
+      }).join("")}
     </div>`;
   }
   if (jarg.length) {
