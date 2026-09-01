@@ -237,15 +237,28 @@ function tituloDoItem(id) {
   for (const c of dados.RUBRICA) for (const it of c.itens) if (it.id === id) return it.texto;
   return id;
 }
-// Frase de referência (opção "bom" que mais cobre o item) para ensinar como perguntar bem.
-function idealDoItem(f, id) {
+// Opção "bom" que mais cobre o item — referência de como perguntar bem e por quê.
+function opcaoIdeal(f, id) {
   let melhor = null;
   (f.opcoes || []).forEach(o => {
     if (o.rotulo === "bom" && (o.cobre || []).includes(id)) {
       if (!melhor || (o.cobre || []).length > melhor.cobre.length) melhor = o;
     }
   });
-  return melhor ? melhor.texto : "";
+  return melhor;
+}
+function idealDoItem(f, id) {
+  const o = opcaoIdeal(f, id);
+  return o ? o.texto : "";
+}
+// Exemplo curto e limpo a partir da frase da opção ideal, sem o preâmbulo
+// ("Pergunto...", "Investigo...") para mostrar a pergunta direta ao paciente.
+function idealCurto(f, id) {
+  const o = opcaoIdeal(f, id);
+  const t = o ? o.texto : "";
+  const idx = t.indexOf(":");
+  if (idx >= 0) return t.slice(idx + 1).trim();
+  return t;
 }
 
 function renderFaseEscrita() {
@@ -302,7 +315,7 @@ function enviarEscrita(painel) {
     html += `<div class="feedback">
       <div class="rotulo bom">✔ Itens que você perguntou (${cobertos.length}/${alvo.length})</div>
       ${cobertos.map(id => {
-        const ideal = idealDoItem(f, id);
+        const ideal = idealCurto(f, id);
         return `<div class="detalhe esc-bom">✅ ${esc(tituloDoItem(id))}${
           ideal ? `<div class="ideal">Como perguntar: <i>${esc(ideal)}</i></div>` : ""}</div>`;
       }).join("")}
@@ -312,9 +325,12 @@ function enviarEscrita(painel) {
     html += `<div class="feedback" style="border-color:var(--alerta)">
       <div class="rotulo ruim">⚠ Nesta etapa também se esperava perguntar sobre</div>
       ${faltando.map(id => {
-        const ideal = idealDoItem(f, id);
+        const ideal = idealCurto(f, id);
+        const por = opcaoIdeal(f, id);
+        const porque = por && por.feedback ? por.feedback : "";
         return `<div class="detalhe esc-falta">✖ ${esc(tituloDoItem(id))}${
-          ideal ? `<div class="ideal">Como perguntar: <i>${esc(ideal)}</i></div>` : ""}</div>`;
+          ideal ? `<div class="ideal">Como perguntar: <i>${esc(ideal)}</i></div>` : ""}${
+          porque ? `<div class="porque">Por que importa: ${esc(porque)}</div>` : ""}</div>`;
       }).join("")}
     </div>`;
   }

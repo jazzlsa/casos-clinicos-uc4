@@ -202,6 +202,11 @@ body {
 .textarea:disabled { opacity: .75; }
 .esc-bom, .esc-falta { margin-bottom: 4px; }
 .ideal { color: var(--texto-suave); font-size: 13px; margin: 2px 0 9px; }
+.porque {
+  color: var(--texto-suave); font-size: 13px; margin: 2px 0 9px;
+  padding-left: 20px; position: relative;
+}
+.porque::before { content: "💡"; position: absolute; left: 0; top: 0; }
 
 /* Estado vazio */
 .vazio { text-align: center; padding: 34px 12px; }
