@@ -178,6 +178,31 @@ body {
 .cartao-caso h3 { margin: 0 0 4px; font-size: 16px; }
 .cartao-caso p { margin: 0; color: var(--texto-suave); font-size: 13.5px; }
 
+/* Seletor de modo (clique / escrita) */
+.seletor-modo { display: flex; gap: 8px; margin: 0 0 14px; }
+.modo-btn {
+  flex: 1; padding: 11px; font: inherit; font-weight: 600; cursor: pointer;
+  background: var(--botao); color: var(--texto); border: 1px solid var(--borda);
+  border-radius: 12px; transition: background .15s, color .15s, border-color .15s;
+}
+.modo-btn:hover { background: var(--botao-hover); }
+.modo-btn.modo-ativa {
+  background: var(--primaria-fraca); color: var(--primaria);
+  border-color: var(--primaria);
+}
+
+/* Modo escrita */
+.textarea {
+  width: 100%; box-sizing: border-box; margin: 2px 0 12px;
+  padding: 12px; font: inherit; font-size: 14.5px; line-height: 1.45;
+  color: var(--texto); background: var(--painel);
+  border: 1px solid var(--borda); border-radius: 12px; resize: vertical;
+}
+.textarea:focus { outline: 2px solid var(--primaria); outline-offset: 1px; }
+.textarea:disabled { opacity: .75; }
+.esc-bom, .esc-falta { margin-bottom: 4px; }
+.ideal { color: var(--texto-suave); font-size: 13px; margin: 2px 0 9px; }
+
 /* Estado vazio */
 .vazio { text-align: center; padding: 34px 12px; }
 .vazio .icone { font-size: 44px; margin-bottom: 10px; }

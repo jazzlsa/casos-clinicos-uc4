@@ -31,9 +31,22 @@ btnTema.addEventListener("click", () => {
   aplicarTema(salvo);
 })();
 
+/* ---------------- Modo (clique / escrita) ---------------- */
+let modo = "clique"; // "clique" | "escrita"
+function setModo(m) {
+  if (m !== "clique" && m !== "escrita") m = "clique";
+  modo = m;
+  try { localStorage.setItem("casos-modo", m); } catch (e) {}
+}
+(function initModo() {
+  let salvo = null;
+  try { salvo = localStorage.getItem("casos-modo"); } catch (e) {}
+  setModo(salvo);
+})();
+
 /* ---------------- Estado ---------------- */
-let dados = { CASOS: [], RUBRICA: [] };
-let estado = null; // { caso, indiceFase, coberto:Set, evitou:Array, porFase:Array }
+let dados = { CASOS: [], RUBRICA: [], PALAVRAS: { itens: {}, jargao: [] } };
+let estado = null; // { caso, indiceFase, coberto:Set, evitou:Array, porFase:Array, modo }
 
 function el(html) {
   // Com um único elemento-raiz, devolve o próprio elemento (mantém chamadas
@@ -71,29 +84,40 @@ function renderHome() {
       <p>${esc(c.chamada || "Caso clínico de anamnese")}</p>
     </button>
   `).join("");
+  const sel = m => m === modo ? " modo-ativa" : "";
   appEl.appendChild(el(`
+    <div class="seletor-modo" role="group" aria-label="Modo de jogo">
+      <button class="modo-btn${sel("clique")}" data-modo="clique">🖱️ Clique</button>
+      <button class="modo-btn${sel("escrita")}" data-modo="escrita">✍️ Escrita</button>
+    </div>
     <h2 class="titulo-pagina">Escolha um caso</h2>
-    <p class="chamada">Você é o médico. Conduza a entrevista — apresente-se, acolha,
-      sem jargão, e feche com hipótese diagnóstica. Marque as ações que você tomaria
-      em cada etapa.</p>
+    <p class="chamada">${
+      modo === "escrita"
+        ? "Você é o médico. Escreva as perguntas que faria em cada etapa — o jogo aponta o que você cobriu do checklist e o que faltou."
+        : "Você é o médico. Conduza a entrevista — apresente-se, acolha, sem jargão, e feche com hipótese diagnóstica. Marque as ações que você tomaria em cada etapa."
+    }</p>
     <div class="lista-casos">${lista}</div>
   `));
+  appEl.querySelectorAll(".modo-btn").forEach(b => {
+    b.addEventListener("click", () => { setModo(b.dataset.modo); renderHome(); });
+  });
   appEl.querySelectorAll(".cartao-caso").forEach(b => {
     b.addEventListener("click", () => {
       const c = casos.find(x => x.id === b.dataset.caso);
-      if (c) iniciarCaso(c);
+      if (c) iniciarCaso(c, modo);
     });
   });
 }
 
 /* ---------------- Motor de fases ---------------- */
 
-function iniciarCaso(caso) {
-  estado = { caso, indiceFase: 0, coberto: new Set(), evitou: [], porFase: [] };
+function iniciarCaso(caso, modoJogo) {
+  estado = { caso, indiceFase: 0, coberto: new Set(), evitou: [], porFase: [], modo: modoJogo };
   renderFase();
 }
 
 function renderFase() {
+  if (estado.modo === "escrita") return renderFaseEscrita();
   const f = estado.caso.fases[estado.indiceFase];
   const total = estado.caso.fases.length;
   const atual = estado.indiceFase;
@@ -189,6 +213,133 @@ function confirmarFase(painel) {
 
 function rotuloIcone(r) { return ({ bom: "✅", medio: "⚠️", ruim: "❌" })[r] || "•"; }
 
+/* ---------------- Modo escrita (texto livre) ---------------- */
+
+function normalizar(s) {
+  return String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+}
+function gruposDoItem(id) {
+  const g = dados.PALAVRAS.itens && dados.PALAVRAS.itens[id];
+  return Array.isArray(g) ? g : [];
+}
+function itemCoberto(id, txtNorm) {
+  const gs = gruposDoItem(id);
+  if (!gs.length) return false;
+  return gs.every(gr => (Array.isArray(gr) ? gr : [gr]).some(p => txtNorm.includes(normalizar(p))));
+}
+// Itens que esta fase pode abordar = união dos cobre das opções da fase.
+function itensDaFase(f) {
+  const s = new Set();
+  (f.opcoes || []).forEach(o => (o.cobre || []).forEach(id => s.add(id)));
+  return [...s];
+}
+function tituloDoItem(id) {
+  for (const c of dados.RUBRICA) for (const it of c.itens) if (it.id === id) return it.texto;
+  return id;
+}
+// Frase de referência (opção "bom" que mais cobre o item) para ensinar como perguntar bem.
+function idealDoItem(f, id) {
+  let melhor = null;
+  (f.opcoes || []).forEach(o => {
+    if (o.rotulo === "bom" && (o.cobre || []).includes(id)) {
+      if (!melhor || (o.cobre || []).length > melhor.cobre.length) melhor = o;
+    }
+  });
+  return melhor ? melhor.texto : "";
+}
+
+function renderFaseEscrita() {
+  const f = estado.caso.fases[estado.indiceFase];
+  const total = estado.caso.fases.length;
+  const atual = estado.indiceFase;
+
+  let pontos = "";
+  for (let i = 0; i < total; i++) {
+    const cls = i < atual ? "feita" : (i === atual ? "ativa" : "");
+    pontos += `<span class="fase-ponto ${cls}"></span>`;
+  }
+
+  const painel = el(`
+    <div class="painel">
+      <div class="barra-fases">${pontos}</div>
+      <div class="fase-tag">Fase ${atual + 1} · ${esc(f.tag)} · ✍️ escrita</div>
+      <h2 class="titulo-pagina">${esc(estado.caso.titulo)}</h2>
+      <p class="dica-fase">${esc(f.instrucao || "Escreva o que você diria ou perguntaria nesta etapa.")}</p>
+      <div class="paciente">${esc(f.paciente)}</div>
+      <textarea id="resposta" class="textarea" rows="5" spellcheck="false"
+        placeholder="Escreva aqui, em suas palavras, o que você diria ou perguntaria..."></textarea>
+      <div id="feedback-holder"></div>
+      <div class="acoes">
+        <button class="btn secundario" id="btn-voltar">← Menu</button>
+        <button class="btn" id="btn-enviar">Enviar resposta ✍️</button>
+      </div>
+    </div>
+  `);
+  painel.querySelector("#btn-voltar").addEventListener("click", () => { estado = null; renderHome(); });
+  painel.querySelector("#btn-enviar").addEventListener("click", () => enviarEscrita(painel));
+
+  appEl.innerHTML = "";
+  appEl.appendChild(painel);
+  painel.querySelector("#resposta").focus();
+}
+
+function enviarEscrita(painel) {
+  const ta = painel.querySelector("#resposta");
+  const txt = ta.value;
+  if (!txt.trim()) { ta.focus(); return; }
+
+  const f = estado.caso.fases[estado.indiceFase];
+  const txtNorm = normalizar(txt);
+
+  const alvo = itensDaFase(f);
+  const cobertos = alvo.filter(id => itemCoberto(id, txtNorm));
+  cobertos.forEach(id => estado.coberto.add(id));
+  const faltando = alvo.filter(id => !cobertos.includes(id));
+  const jarg = (dados.PALAVRAS.jargao || []).filter(p => txtNorm.includes(normalizar(p)));
+
+  let html = "";
+  if (cobertos.length) {
+    html += `<div class="feedback">
+      <div class="rotulo bom">✔ Itens que você perguntou (${cobertos.length}/${alvo.length})</div>
+      ${cobertos.map(id => {
+        const ideal = idealDoItem(f, id);
+        return `<div class="detalhe esc-bom">✅ ${esc(tituloDoItem(id))}${
+          ideal ? `<div class="ideal">Como perguntar: <i>${esc(ideal)}</i></div>` : ""}</div>`;
+      }).join("")}
+    </div>`;
+  }
+  if (faltando.length) {
+    html += `<div class="feedback" style="border-color:var(--alerta)">
+      <div class="rotulo ruim">⚠ Nesta etapa também se esperava perguntar sobre</div>
+      ${faltando.map(id => `<div class="detalhe esc-falta">✖ ${esc(tituloDoItem(id))}</div>`).join("")}
+    </div>`;
+  }
+  if (jarg.length) {
+    html += `<div class="feedback" style="border-color:var(--erro)">
+      <div class="rotulo ruim">🚩 Cuidado com jargão técnico ao perguntar</div>
+      <div class="reacao">Você usou: ${jarg.map(esc).join(", ")}. Na prova, pergunte sobre sintomas
+        em linguagem simples — o termo técnico entra só no resumo final.</div>
+    </div>`;
+  }
+
+  const holder = painel.querySelector("#feedback-holder");
+  holder.innerHTML = html;
+
+  ta.disabled = true;
+  const btn = painel.querySelector("#btn-enviar");
+  btn.disabled = true; btn.textContent = "Resposta enviada";
+
+  const proximo = el(`<button class="btn bloco" id="btn-proximo" style="margin-top:12px">${
+    estado.indiceFase + 1 < estado.caso.fases.length ? "Próxima etapa →" : "Ver resultado 🏁"}</button>`);
+  proximo.addEventListener("click", () => {
+    estado.indiceFase += 1;
+    if (estado.indiceFase < estado.caso.fases.length) renderFase();
+    else renderResumo();
+  });
+  holder.appendChild(proximo);
+  proximo.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
 /* ---------------- Resumo final ---------------- */
 
 function renderResumo() {
@@ -239,6 +390,19 @@ function renderResumo() {
 /* ---------------- Carga ---------------- */
 
 function carregarDados() {
+  // palavras.json carrega em paralelo SEM bloquear a renderização: o app
+  // funciona (modo clique) mesmo se ele falhar ou atrasar; o modo escrita usa
+  // as palavras assim que chegam.
+  fetch("./data/palavras.json")
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(p => {
+      dados.PALAVRAS = (p && p.itens)
+        ? { itens: p.itens, jargao: p.jargao || [] }
+        : { itens: {}, jargao: [] };
+      document.documentElement.dataset.palavras = "1";
+    })
+    .catch(() => { document.documentElement.dataset.palavras = "0"; });
+
   Promise.all([
     fetch("./data/casos.json").then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }),
     fetch("./data/rubrica.json").then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }),

@@ -13,9 +13,16 @@ Um **jogo de simulador de entrevista clínica** para treinar a prova prática de
 
 ## Como o jogo funciona
 
-Fluxo em 5 fases: **Apresentação → Abertura → Anamnese → Ansiedade/empatia → Resumo + Hipótese**.
+Fluxo em 6 fases por caso. No início você escolhe o **modo de jogo**:
 
-Em cada fase você escolhe o que dizer/perguntar. O jogo reage como o paciente e, no fim, pontua por **categorias do checklist** de avaliação (Apresentação, Coleta, Comunicação sem jargão, Empatia, Resumo, Hipótese), com dicas de melhoria.
+- **🖱️ Clique** — a cada fase, marca entre opções prontas as ações que tomaria.
+- **✍️ Escrita** — a cada fase, **escreve em texto livre** o que diria/perguntaria. O
+  jogo detecta por **palavras-chave** (`data/palavras.json`) quais itens do checklist sua
+  resposta cobriu e mostra, por fase, o que ficou faltando + um aviso leve se você usar
+  **jargão técnico** ao perguntar.
+
+Nos dois modos, o fim pontua por **categorias do checklist** de avaliação e mostra dicas
+de melhoria.
 
 ## Estrutura
 
@@ -26,6 +33,7 @@ casos-clinicos-uc4/
   js/app.js           # motor do simulador
   data/rubrica.json   # checklist de avaliação
   data/casos.json     # casos clínicos
+  data/palavras.json  # palavras-chave do modo escrita (+ lista de jargão)
   rubrica/            # conteúdo de referência (local, fora do GitHub)
   tools/parse_rubrica.py  # importa conteúdo -> data/rubrica.json
 ```
