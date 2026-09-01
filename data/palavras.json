@@ -1,64 +1,937 @@
 {
   "_nota": "Avaliacao por palavra-chave do modo de escrita. 'itens' mapeia id do checklist -> lista de grupos; para o item contar como coberto, PELO MENOS uma palavra de CADA grupo deve aparecer no texto. Palavras e texto sao normalizados (minusculo + sem acento) antes da comparacao (substring). 'jargao' e uma lista usada apenas para o aviso leve de nao usar termos tecnicos ao perguntar.",
   "itens": {
-    "rep01": [["apresento", "apresent", "meu nome", "sou estudante", "como quer ser chamada", "como quer ser chamado", "bom dia", "boa tarde", "olá"]],
-    "rep02": [["tudo bem", "compreend", "calma", "ajudar", "ajuda", "estou aqui", "preocupad", "nervos", "vou cuidar", "acolh", "entenda que", "vai ficar tudo bem", "respeito", "empatia", "com carinho", "sinto muito"]],
-    "rep03": [["prefere ser chamad", "como prefere", "cultura", "costume", "religia", "identidade", "vontade", "sua religião", "a senhora se sente"]],
-    "rep04": [["vou fazer algumas perguntas", "vou fazer umas perguntas", "posso conduzir", "posso fazer perguntas", "uma entrevista", "conduzir a entrevista", "vou entrevistar", "posso te fazer umas perguntas"]],
-    "anam01": [["nome", "idade", "quantos anos", "se chama"], ["profiss", "mora", "naturalidade", "religia", "estado civil", "trabalha", "de onde", "aposentad", "cozinheira", "estudante"]],
-    "anam03": [["você mesma", "você mesmo", "quem está me informando", "quem me conta", "confiabil", "informante", "a própria pessoa", "consegue conversar", "se sente bem para conversar", "a senhora mesma", "o senhor mesmo"]],
-    "anam04": [["queixa principal", "o que está sentindo", "o que o traz", "o que a traz", "motivo", "o que sente", "queixa"], ["desde quando", "há quanto", "quando começou", "há quantos dias", "faz quanto tempo", "faz uns", "começou", "duração"]],
-    "anam05": [["resumo", "resumindo", "para resumir", "em resumo", "retomando", "então o que eu entendi", "hipótese", "diagnóstico", "conclusão"]],
-    "anam06": [["tem alguma doença", "alguma doença", "remédio", "remédios", "remedio", "medicamento", "medicação", "diabetes", "pressão", "hipertens", "já teve", "antecedente", "faz tratamento"]],
-    "anam07": [["alguma outra coisa", "outro sintoma", "algum outro", "além disso", "interrogatório", "isda", "por aparelhos", "outras queixas", "mais alguma coisa", "dor de cabeça", "coração", "barriga", "urina"]],
-    "anam08": [["fuma", "tabagismo", "bebe", "álcool", "sono", "alimenta", "dieta", "dorme", "atividade física", "exercício", "usa sal", "faz exercício", "hábitos", "estilo de vida"]],
-    "anam09": [["família", "hereditári", "na família", "mãe tem", "pai tem", "irmão tem", "irmã tem", "alguém na família", "histórico familiar"]],
-    "anam10": [["impacto", "dia a dia", "afetando", "consegue trabalhar", "faltou ao trabalho", "deixou de trabalhar", "prejudicando", "sua vida", "atrapalha"]],
-    "anam11": [["percebo que", "vejo que", "notei que", "observo que", "está nervosa", "está nervoso", "aperta as mãos", "parece tens", "está preocupada", "está preocupado", "parece incomodada"]],
-    "disp01": [["descrever", "como é essa", "como é o", "aperto", "fome de ar", "não consegue respirar fundo", "a sensação", "parece que", "como o senhor sente", "como a senhora sente"]],
-    "disp02": [["contínua", "contínua", "em crise", "intermitent", "crônico", "persistente", "acordou à noite", "de madrugada", "noturna", "vem e vai", "aos poucos", "quando começou"]],
-    "disp03": [["deitado", "deitada", "posição", "travesseiros", "sentado", "sentada", "ortopneia", "respira melhor", "posição corporal", "reclinada"]],
-    "disp04": [["gripe", "resfriado", "infecc", "ficou doente", "ambiente", "ambient", "poeira", "pó", "cheiro", "fumaça", "clima", "frio", "local de trabalho", "estímulo", "agente"]],
-    "disp05": [["trabalha", "onde trabalha", "profissão", "exposição", "poeira", "farinha", "químico", "ocupacion", "produtos", "pó", "trabalho"]],
-    "disp06": [["febre", "temperatura", "tosse", "catarro", "expectoração", "escarro", "calafrio", "medir a temperatura"]],
-    "disp07": [["dor no peito", "dor torácica", "dor no tórax", "aperto no peito", "queimação no peito", "dói o peito", "opressão"]],
-    "disp08": [["esforço", "esforço", "subir escada", "carregar peso", "andar rápido", "caminhar", "palpitação", "arritmia", "dor nas costas", "dor no queixo", "mandíbula", "isquêmic", "coração acelerado"]],
-    "disp09": [["alergia", "alérgico", "rinite", "eczema", "asma na infância", "bronquite quando", "atopia", "tem alergia", "foi alérgico", "foi alérgica"]],
-    "disp10": [["a tosse é", "como é a tosse", "seca", "produtiva", "com catarro", "espumosa", "catarro claro", "tosse com"]],
-    "disp11": [["sangue", "hemoptise", "escarrou sangue", "catarro com sangue", "expectoração com sangue", "sangrou"]],
-    "disp12": [["cansado", "cansada", "fraqueza", "fraco", "fraca", "astenia", "letargia", "indisposição", "sem disposição", "esgotado", "sem energia"]],
-    "dor01": [["idade", "quantos anos"]],
-    "dor02": [["como começou", "modo de início", "começou aos poucos", "de repente", "bateu", "caiu", "forçou", "trauma", "espontâneo", "que estava fazendo", "início"]],
-    "dor03": [["cólica", "constante", "queimação", "pontada", "como é a dor", "como é essa", "aperta", "tipo", "característica da dor", "como é"]],
-    "dor04": [["há quanto tempo", "desde quando", "duração", "há quantos dias", "faz quanto tempo", "quanto tempo dura"]],
-    "dor05": [["quantas vezes", "frequência", "por dia", "por semana", "quantas crises", "quantas vezes por"]],
-    "dor06": [["apontar", "onde dói", "localização", "localiza", "o lugar exato", "mostrar onde", "onde exatamente", "apontou"]],
-    "dor07": [["irradia", "espalha", "vai para", "vai pras costas", "lombar", "escapula", "ombro", "genitália", "para onde", "desce"]],
-    "dor08": [["piora", "piora quando", "tosse", "espirro", "palpação", "movimento", "andar", "quando mexe", "se mexer"]],
-    "dor09": [["comer", "comida", "alimento", "alimenta", "deitada", "deitado", "de pé", "posição", "decúbito", "jejum", "depois de comer"]],
-    "dor10": [["dipirona", "paracetamol", "analgésico", "remédio para dor", "tomou algo", "tomei algo", "medicamento para dor", "opioide", "para aliviar"]],
-    "dor11": [["enjoo", "náusea", "vômito", "vomita", "apetite", "sem vontade de comer", "comeu", "anorexia"]],
-    "dor12": [["diarreia", "intestino", "prisão de ventre", "constipaç", "fezes", "solto o intestino", "evacua", "hábito intestinal"]],
-    "dor13": [["menstruação", "menstruada", "ciclo", "última menstruação", "regra", "corrimento", "sangramento", "menstrual"]],
-    "dor15": [["urina", "ao urinar", "ardência", "corrimento", "infecção urinária", "dor para urinar", "genital", "dói ao urinar", "sintomas urinários"]],
-    "dor16": [["diabetes", "pressão", "hipertens", "tipo 2", "metformina", "metabólica", "colesterol", "tireoide", "glicose"]],
-    "dor17": [["síndrome do intestino irritável", "sii", "funcional", "nervos do intestino", "psiquiátric", "neurológic", "depressão", "ansiedade"]],
-    "ede01": [["há quanto tempo", "começou", "instalação", "agudo", "crônico", "há quantos dias", "quando começou", "aos poucos", "de repente"]],
-    "ede02": [["ao longo do dia", "de manhã", "à noite", "fim do dia", "piora à noite", "melhora de manhã", "varia", "o dia inteiro", "á noite"]],
-    "ede03": [["onde incha", "localização", "localiza", "tornozelo", "perna", "pés", "mostrar onde", "as duas pernas", "até onde sobe", "membros inferiores", "o lugar"]],
-    "ede04": [["engordou", "ganhou peso", "ganho de peso", "peso subiu", "engordei", "aumentou o peso", "peso"]],
-    "ede05": [["falta de ar", "dispneia", "ortopneia", "sufocad", "acorda à noite", "à noite sem ar", "paroxística noturna", "deitada falta de ar", "congestão"]],
-    "ede06": [["travesseiro", "travesseiros", "elevar a cabeceira", "dormir sentada", "dormir sentado", "cabeceira elevada", "quantos travesseiros"]],
-    "ede07": [["barriga aumentou", "barriga", "abdome", "icterícia", "amarelado", "olhos amarelos", "confusão", "tremor", "eritema palmar", "fígado", "hepátic"]],
-    "ede08": [["espumosa", "espuma na urina", "pálpebra", "pálpebras", "rosto incha", "face inchada", "inchaço no rosto", "renal", "rim", "urina com espuma"]],
-    "ede09": [["remédio", "remédios", "remedio", "medicamento", "medicação", "anlodipina", "amlodipina", "que remédio", "toma algum", "medicação contínua"]],
-    "ede10": [["bateu", "machucou", "trauma", "cirurgia", "operou", "cirúrgic", "bateu a perna", "ferimento"]],
-    "ede11": [["varizes", "peso nas pernas", "pernas pesam", "dor nas pernas", "pele escura", "pele endurecida", "venosa", "tornozelo escuro", "cansaço nas pernas"]],
-    "ede12": [["cansaço", "cansaço", "frio", "sensação de frio", "pele seca", "prisão de ventre", "sonolência", "hipotireoi", "tireoide", "queda de cabelo"]]
+    "rep01": [
+      [
+        "apresento",
+        "apresent",
+        "meu nome",
+        "sou estudante",
+        "como quer ser chamada",
+        "como quer ser chamado",
+        "bom dia",
+        "boa tarde",
+        "olá",
+        "pode me chamar",
+        "sou acadêmico",
+        "como você quer que eu te chame",
+        "vou cuidar de você"
+      ]
+    ],
+    "rep02": [
+      [
+        "tudo bem",
+        "compreend",
+        "calma",
+        "ajudar",
+        "ajuda",
+        "estou aqui",
+        "preocupad",
+        "nervos",
+        "vou cuidar",
+        "acolh",
+        "entenda que",
+        "vai ficar tudo bem",
+        "respeito",
+        "empatia",
+        "com carinho",
+        "sinto muito"
+      ]
+    ],
+    "rep03": [
+      [
+        "prefere ser chamad",
+        "como prefere",
+        "cultura",
+        "costume",
+        "religia",
+        "identidade",
+        "vontade",
+        "sua religião",
+        "a senhora se sente"
+      ]
+    ],
+    "rep04": [
+      [
+        "vou fazer algumas perguntas",
+        "vou fazer umas perguntas",
+        "posso conduzir",
+        "posso fazer perguntas",
+        "uma entrevista",
+        "conduzir a entrevista",
+        "vou entrevistar",
+        "posso te fazer umas perguntas",
+        "vou te fazer perguntas",
+        "posso te perguntar",
+        "explico o que vou fazer",
+        "vou te entrevistar"
+      ]
+    ],
+    "anam01": [
+      [
+        "nome",
+        "idade",
+        "quantos anos",
+        "se chama",
+        "qual o seu nome",
+        "quantos anos você tem",
+        "qual sua idade",
+        "me conta um pouco sobre você"
+      ],
+      [
+        "profiss",
+        "mora",
+        "naturalidade",
+        "religia",
+        "estado civil",
+        "trabalha",
+        "de onde",
+        "aposentad",
+        "cozinheira",
+        "estudante"
+      ]
+    ],
+    "anam03": [
+      [
+        "você mesma",
+        "você mesmo",
+        "quem está me informando",
+        "quem me conta",
+        "confiabil",
+        "informante",
+        "a própria pessoa",
+        "consegue conversar",
+        "se sente bem para conversar",
+        "a senhora mesma",
+        "o senhor mesmo",
+        "quem está contando",
+        "você está bem para conversar",
+        "é você que está me contando"
+      ]
+    ],
+    "anam04": [
+      [
+        "queixa principal",
+        "o que está sentindo",
+        "o que o traz",
+        "o que a traz",
+        "motivo",
+        "o que sente",
+        "queixa",
+        "o que te trouxe",
+        "o que te trouxe hoje",
+        "me conta por que você veio",
+        "qual o motivo",
+        "do que você está sentindo"
+      ],
+      [
+        "desde quando",
+        "há quanto",
+        "quando começou",
+        "há quantos dias",
+        "faz quanto tempo",
+        "faz uns",
+        "começou",
+        "duração"
+      ]
+    ],
+    "anam05": [
+      [
+        "resumo",
+        "resumindo",
+        "para resumir",
+        "em resumo",
+        "retomando",
+        "então o que eu entendi",
+        "hipótese",
+        "diagnóstico",
+        "conclusão",
+        "para concluir",
+        "então resumindo",
+        "para fechar"
+      ]
+    ],
+    "anam06": [
+      [
+        "tem alguma doença",
+        "alguma doença",
+        "remédio",
+        "remédios",
+        "medicamento",
+        "medicação",
+        "diabetes",
+        "pressão",
+        "hipertens",
+        "já teve",
+        "antecedente",
+        "faz tratamento",
+        "você toma algum remédio",
+        "faz algum tratamento",
+        "tem problema de saúde",
+        "é doente de quê"
+      ]
+    ],
+    "anam07": [
+      [
+        "alguma outra coisa",
+        "outro sintoma",
+        "algum outro",
+        "além disso",
+        "interrogatório",
+        "por aparelhos",
+        "outras queixas",
+        "mais alguma coisa",
+        "dor de cabeça",
+        "coração",
+        "barriga",
+        "urina",
+        "algum outro problema",
+        "mais alguma queixa",
+        "passa de outra coisa",
+        "além disso, o quê mais"
+      ]
+    ],
+    "anam08": [
+      [
+        "fuma",
+        "tabagismo",
+        "bebe",
+        "álcool",
+        "sono",
+        "alimenta",
+        "dieta",
+        "dorme",
+        "atividade física",
+        "exercício",
+        "usa sal",
+        "faz exercício",
+        "hábitos",
+        "estilo de vida",
+        "dorme bem",
+        "pratica atividade",
+        "fuma ou bebe",
+        "alimentação",
+        "uso de álcool"
+      ]
+    ],
+    "anam09": [
+      [
+        "família",
+        "hereditári",
+        "na família",
+        "mãe tem",
+        "pai tem",
+        "irmão tem",
+        "irmã tem",
+        "alguém na família",
+        "histórico familiar",
+        "história na família",
+        "alguém em casa tem",
+        "doença na família"
+      ]
+    ],
+    "anam10": [
+      [
+        "impacto",
+        "dia a dia",
+        "afetando",
+        "consegue trabalhar",
+        "faltou ao trabalho",
+        "deixou de trabalhar",
+        "prejudicando",
+        "sua vida",
+        "atrapalha",
+        "atrapalha sua vida",
+        "consegue fazer suas coisas",
+        "prejudica",
+        "deixou de fazer algo"
+      ]
+    ],
+    "anam11": [
+      [
+        "percebo que",
+        "vejo que",
+        "notei que",
+        "observo que",
+        "está nervosa",
+        "está nervoso",
+        "aperta as mãos",
+        "parece tens",
+        "está preocupada",
+        "está preocupado",
+        "parece incomodada",
+        "percebo que você está",
+        "vejo você",
+        "te vejo",
+        "observei que você"
+      ]
+    ],
+    "disp01": [
+      [
+        "descrever",
+        "como é essa",
+        "como é o",
+        "aperto",
+        "fome de ar",
+        "não consegue respirar fundo",
+        "a sensação",
+        "parece que",
+        "como o senhor sente",
+        "como a senhora sente",
+        "como você sente",
+        "como você descreve",
+        "me fala como é"
+      ]
+    ],
+    "disp02": [
+      [
+        "contínua",
+        "em crise",
+        "intermitent",
+        "crônico",
+        "persistente",
+        "acordou à noite",
+        "de madrugada",
+        "noturna",
+        "vem e vai",
+        "aos poucos",
+        "quando começou",
+        "é sempre igual",
+        "piorou aos poucos",
+        "aos esforços"
+      ]
+    ],
+    "disp03": [
+      [
+        "deitado",
+        "deitada",
+        "posição",
+        "travesseiros",
+        "sentado",
+        "sentada",
+        "respira melhor",
+        "posição corporal",
+        "reclinada",
+        "deitado piora",
+        "deitado melhora",
+        "precisa de travesseiro",
+        "posição que respira melhor"
+      ]
+    ],
+    "disp04": [
+      [
+        "gripe",
+        "resfriado",
+        "infecc",
+        "ficou doente",
+        "ambiente",
+        "ambient",
+        "poeira",
+        "cheiro",
+        "fumaça",
+        "clima",
+        "frio",
+        "local de trabalho",
+        "estímulo",
+        "agente",
+        "pegou gripe",
+        "teve resfriado",
+        "o clima",
+        "mudança de temperatura"
+      ]
+    ],
+    "disp05": [
+      [
+        "trabalha",
+        "onde trabalha",
+        "profissão",
+        "exposição",
+        "poeira",
+        "farinha",
+        "químico",
+        "ocupacion",
+        "produtos",
+        "trabalho",
+        "o que você faz da vida",
+        "exposição no trabalho",
+        "trabalha com quê",
+        "produto químico"
+      ]
+    ],
+    "disp06": [
+      [
+        "febre",
+        "temperatura",
+        "tosse",
+        "catarro",
+        "escarro",
+        "calafrio",
+        "medir a temperatura",
+        "tem febre",
+        "tem tosse",
+        "mede a febre"
+      ]
+    ],
+    "disp07": [
+      [
+        "dor no peito",
+        "dor torácica",
+        "dor no tórax",
+        "aperto no peito",
+        "queimação no peito",
+        "dói o peito",
+        "opressão",
+        "opressão no peito",
+        "aperto no tórax"
+      ]
+    ],
+    "disp08": [
+      [
+        "esforço",
+        "subir escada",
+        "carregar peso",
+        "andar rápido",
+        "caminhar",
+        "palpitação",
+        "arritmia",
+        "dor nas costas",
+        "dor no queixo",
+        "mandíbula",
+        "isquêmic",
+        "coração acelerado",
+        "falta de ar pra subir",
+        "se cansa ao",
+        "esforço físico",
+        "coração dispara"
+      ]
+    ],
+    "disp09": [
+      [
+        "alergia",
+        "alérgico",
+        "rinite",
+        "eczema",
+        "asma na infância",
+        "bronquite quando",
+        "tem alergia",
+        "foi alérgico",
+        "foi alérgica",
+        "reação alérgica"
+      ]
+    ],
+    "disp10": [
+      [
+        "a tosse é",
+        "como é a tosse",
+        "seca",
+        "produtiva",
+        "com catarro",
+        "espumosa",
+        "catarro claro",
+        "tosse com",
+        "tosse seca",
+        "tosse com catarro",
+        "a tosse"
+      ]
+    ],
+    "disp11": [
+      [
+        "sangue",
+        "escarrou sangue",
+        "catarro com sangue",
+        "expectoração com sangue",
+        "sangrou",
+        "sangue na boca",
+        "escarrou sangrento"
+      ]
+    ],
+    "disp12": [
+      [
+        "cansado",
+        "cansada",
+        "fraqueza",
+        "fraco",
+        "fraca",
+        "indisposição",
+        "sem disposição",
+        "esgotado",
+        "sem energia",
+        "cansaço",
+        "palidez"
+      ]
+    ],
+    "dor01": [
+      [
+        "idade",
+        "quantos anos"
+      ]
+    ],
+    "dor02": [
+      [
+        "como começou",
+        "modo de início",
+        "começou aos poucos",
+        "de repente",
+        "bateu",
+        "caiu",
+        "forçou",
+        "trauma",
+        "espontâneo",
+        "que estava fazendo",
+        "início",
+        "foi de repente",
+        "começou de um dia pro outro",
+        "o que você estava fazendo",
+        "de uma hora pra outra"
+      ]
+    ],
+    "dor03": [
+      [
+        "cólica",
+        "constante",
+        "queimação",
+        "pontada",
+        "como é a dor",
+        "como é essa",
+        "aperta",
+        "tipo",
+        "característica da dor",
+        "como é",
+        "de que jeito é",
+        "qual a característica",
+        "como você descreve a dor",
+        "que tipo de dor"
+      ]
+    ],
+    "dor04": [
+      [
+        "há quanto tempo",
+        "desde quando",
+        "duração",
+        "há quantos dias",
+        "faz quanto tempo",
+        "quanto tempo dura",
+        "faz quanto tempo que dói",
+        "quanto tempo está com dor"
+      ]
+    ],
+    "dor05": [
+      [
+        "quantas vezes",
+        "frequência",
+        "por dia",
+        "por semana",
+        "quantas crises",
+        "quantas vezes por",
+        "quantas vezes por dia dói",
+        "com que frequência"
+      ]
+    ],
+    "dor06": [
+      [
+        "apontar",
+        "onde dói",
+        "localização",
+        "localiza",
+        "o lugar exato",
+        "mostrar onde",
+        "onde exatamente",
+        "apontou",
+        "qual o lugar da dor",
+        "me mostra onde",
+        "onde que dói"
+      ]
+    ],
+    "dor07": [
+      [
+        "irradia",
+        "espalha",
+        "vai para",
+        "vai pras costas",
+        "lombar",
+        "escapula",
+        "ombro",
+        "genitália",
+        "para onde",
+        "desce",
+        "espalha pra onde",
+        "vai pra outro lugar",
+        "dói em outro lugar também"
+      ]
+    ],
+    "dor08": [
+      [
+        "piora",
+        "piora quando",
+        "tosse",
+        "espirro",
+        "movimento",
+        "andar",
+        "quando mexe",
+        "se mexer",
+        "o que faz piorar",
+        "piora com o quê",
+        "o que alivia"
+      ]
+    ],
+    "dor09": [
+      [
+        "comer",
+        "comida",
+        "alimento",
+        "alimenta",
+        "deitada",
+        "deitado",
+        "de pé",
+        "posição",
+        "jejum",
+        "depois de comer",
+        "muda com a posição",
+        "quando come muda",
+        "deitada muda",
+        "posição muda"
+      ]
+    ],
+    "dor10": [
+      [
+        "dipirona",
+        "paracetamol",
+        "analgésico",
+        "remédio para dor",
+        "tomou algo",
+        "tomei algo",
+        "medicamento para dor",
+        "para aliviar",
+        "toma remédio pra dor",
+        "o que fez pra aliviar",
+        "usou alguma medicação"
+      ]
+    ],
+    "dor11": [
+      [
+        "enjoo",
+        "náusea",
+        "vômito",
+        "vomita",
+        "apetite",
+        "sem vontade de comer",
+        "comeu",
+        "anorexia",
+        "sente enjoo",
+        "tem vontade de vomitar",
+        "come direito"
+      ]
+    ],
+    "dor12": [
+      [
+        "diarreia",
+        "intestino",
+        "prisão de ventre",
+        "constipaç",
+        "fezes",
+        "solto o intestino",
+        "evacua",
+        "hábito intestinal",
+        "intestino está",
+        "faz cocô",
+        "evacuação",
+        "prendeu o intestino"
+      ]
+    ],
+    "dor13": [
+      [
+        "menstruação",
+        "menstruada",
+        "ciclo",
+        "última menstruação",
+        "regra",
+        "corrimento",
+        "sangramento",
+        "menstrual",
+        "ciclo menstrual",
+        "menstrua",
+        "regular",
+        "última vez que menstruou"
+      ]
+    ],
+    "dor15": [
+      [
+        "urina",
+        "ao urinar",
+        "ardência",
+        "corrimento",
+        "infecção urinária",
+        "dor para urinar",
+        "genital",
+        "dói ao urinar",
+        "sintomas urinários",
+        "dói pra urinar",
+        "arda na hora de urinar",
+        "desconforto pra urinar"
+      ]
+    ],
+    "dor16": [
+      [
+        "diabetes",
+        "pressão",
+        "hipertens",
+        "tipo 2",
+        "metformina",
+        "metabólica",
+        "colesterol",
+        "tireoide",
+        "glicose",
+        "problema de diabetes",
+        "colesterol alto",
+        "doença metabólica"
+      ]
+    ],
+    "dor17": [
+      [
+        "síndrome do intestino irritável",
+        "sii",
+        "funcional",
+        "nervos do intestino",
+        "psiquiátric",
+        "neurológic",
+        "depressão",
+        "ansiedade",
+        "já teve diagnóstico de",
+        "problema nos nervos",
+        "depressão ou ansiedade"
+      ]
+    ],
+    "ede01": [
+      [
+        "há quanto tempo",
+        "começou",
+        "instalação",
+        "agudo",
+        "crônico",
+        "há quantos dias",
+        "quando começou",
+        "aos poucos",
+        "de repente",
+        "há quanto tempo sente",
+        "instalou aos poucos",
+        "apareceu de repente"
+      ]
+    ],
+    "ede02": [
+      [
+        "ao longo do dia",
+        "de manhã",
+        "à noite",
+        "fim do dia",
+        "piora à noite",
+        "melhora de manhã",
+        "varia",
+        "o dia inteiro",
+        "melhora à noite",
+        "muda ao longo do dia",
+        "de manhã como está"
+      ]
+    ],
+    "ede03": [
+      [
+        "onde incha",
+        "localização",
+        "localiza",
+        "tornozelo",
+        "perna",
+        "pés",
+        "mostrar onde",
+        "as duas pernas",
+        "até onde sobe",
+        "membros inferiores",
+        "o lugar",
+        "qual parte",
+        "mostra onde",
+        "incha só uma perna"
+      ]
+    ],
+    "ede04": [
+      [
+        "engordou",
+        "ganhou peso",
+        "ganho de peso",
+        "peso subiu",
+        "engordei",
+        "aumentou o peso",
+        "peso",
+        "engordou recentemente",
+        "peso aumentou"
+      ]
+    ],
+    "ede05": [
+      [
+        "falta de ar",
+        "sufocad",
+        "acorda à noite",
+        "à noite sem ar",
+        "paroxística noturna",
+        "deitada falta de ar",
+        "congestão",
+        "acorda com falta de ar",
+        "sufoca à noite",
+        "falta de ar deitada"
+      ]
+    ],
+    "ede06": [
+      [
+        "travesseiro",
+        "travesseiros",
+        "elevar a cabeceira",
+        "dormir sentada",
+        "dormir sentado",
+        "cabeceira elevada",
+        "quantos travesseiros",
+        "dorme sentada",
+        "cabeceira alta"
+      ]
+    ],
+    "ede07": [
+      [
+        "barriga aumentou",
+        "barriga",
+        "abdome",
+        "amarelado",
+        "olhos amarelos",
+        "confusão",
+        "tremor",
+        "eritema palmar",
+        "fígado",
+        "hepátic",
+        "barriga distendida",
+        "amarelo nos olhos",
+        "pele amarelada",
+        "inchaço na barriga"
+      ]
+    ],
+    "ede08": [
+      [
+        "espumosa",
+        "espuma na urina",
+        "pálpebra",
+        "pálpebras",
+        "rosto incha",
+        "face inchada",
+        "inchaço no rosto",
+        "renal",
+        "rim",
+        "urina com espuma",
+        "rosto inchado de manhã",
+        "problema de rim"
+      ]
+    ],
+    "ede09": [
+      [
+        "remédio",
+        "remédios",
+        "medicamento",
+        "medicação",
+        "anlodipina",
+        "amlodipina",
+        "que remédio",
+        "toma algum",
+        "medicação contínua",
+        "que remédio toma",
+        "toma alguma medicação",
+        "mudou algum remédio",
+        "anlodipino",
+        "remédio de pressão"
+      ]
+    ],
+    "ede10": [
+      [
+        "bateu",
+        "machucou",
+        "trauma",
+        "cirurgia",
+        "operou",
+        "cirúrgic",
+        "bateu a perna",
+        "ferimento",
+        "machucou a perna",
+        "fez operação"
+      ]
+    ],
+    "ede11": [
+      [
+        "varizes",
+        "peso nas pernas",
+        "pernas pesam",
+        "dor nas pernas",
+        "pele escura",
+        "pele endurecida",
+        "venosa",
+        "tornozelo escuro",
+        "cansaço nas pernas",
+        "veias doem",
+        "pernas pesadas",
+        "pele escura no tornozelo"
+      ]
+    ],
+    "ede12": [
+      [
+        "cansaço",
+        "frio",
+        "sensação de frio",
+        "pele seca",
+        "prisão de ventre",
+        "sonolência",
+        "hipotireoi",
+        "tireoide",
+        "queda de cabelo",
+        "muito frio",
+        "sonolenta",
+        "cabelo caindo",
+        "hipotireoidismo"
+      ]
+    ]
   },
   "jargao": [
-    "comorbidade", "geniturinário", "hipogástrio", "hipogastrio", "dispneia paroxística", "ortopneia", "platipneia", "dispneia",
-    "anamnese", "hisma", "h.m.a", "isda", "hemoptise", "atopia", "sibilos", "anasarca", "opioide", "equivalente isquêmico",
-    "astenia", "letargia", "expectoração", "decúbito", "interrogatório sintomático", "estigmas", "palpação"
+    "comorbidade",
+    "geniturinário",
+    "hipogástrio",
+    "hipogastrio",
+    "dispneia paroxística",
+    "ortopneia",
+    "platipneia",
+    "dispneia",
+    "anamnese",
+    "hisma",
+    "h.m.a",
+    "isda",
+    "hemoptise",
+    "atopia",
+    "sibilos",
+    "anasarca",
+    "opioide",
+    "equivalente isquêmico",
+    "astenia",
+    "letargia",
+    "expectoração",
+    "decúbito",
+    "interrogatório sintomático",
+    "estigmas",
+    "palpação",
+    "patologia",
+    "sintomatologia",
+    "propedêutica",
+    "etiologia",
+    "prognóstico",
+    "icterícia",
+    "sibilância",
+    "crepitação",
+    "disúria",
+    "polaciúria",
+    "tenesmo",
+    "equimose",
+    "petéquias",
+    "linfonodos",
+    "fácies",
+    "cianose",
+    "piora do quadro"
   ]
 }

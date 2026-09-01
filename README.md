@@ -36,7 +36,15 @@ casos-clinicos-uc4/
   data/palavras.json  # palavras-chave do modo escrita (+ lista de jargão)
   rubrica/            # conteúdo de referência (local, fora do GitHub)
   tools/parse_rubrica.py  # importa conteúdo -> data/rubrica.json
+  tools/_refinar_palavras.py  # verifica/refina data/palavras.json (modo escrita)
 ```
+
+Refinar palavras do modo escrita (`python tools/_refinar_palavras.py [--fix] [--all]`):
+detecta duplicatas exatas e por acento, redundância por substring, termos do grupo
+que também estão no jargão, palavras muito curtas (falso positivo) e sangria entre
+itens. `--fix` remove duplicatas; `--all` inclui a checagem de redundância verbosa.
+Política: termos técnicos **não** são palavras-chave de grupo — quem usa jargão não
+pontua o item, só recebe o aviso.
 
 ## Rodar localmente
 
